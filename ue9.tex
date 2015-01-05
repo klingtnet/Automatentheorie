@@ -1,0 +1,71 @@
+\documentclass{scrartcl}
+\addtokomafont{disposition}{\rmfamily}
+
+\usepackage{scrpage2}
+\usepackage{xltxtra}
+\usepackage{polyglossia}
+\usepackage{lastpage}
+\usepackage{amsmath, amssymb}
+\usepackage{stmaryrd}
+\usepackage{caption}
+\usepackage{csquotes}
+\usepackage{tikz}
+\usepackage{fontspec}
+\usepackage{enumerate}
+\usepackage{mathtools} % coloneqq
+% \setmainfont{Linux Libertine O}
+\usetikzlibrary{arrows,automata, graphs}
+\usetikzlibrary{trees}
+
+\setmainlanguage{german}
+
+\setlength{\parskip}{\baselineskip}
+\setlength{\parindent}{0pt}
+
+\pagestyle{scrheadings}
+\clearscrheadfoot
+\ihead[]{Andreas Linz, Lucas Stadler}
+\chead[]{\textsc{Automatentheorie}}
+\ohead[]{\today}
+\cfoot[\pagemark]{\textnormal{\pagemark{} / \pageref{LastPage}}}
+\setheadsepline{1pt}
+
+\begin{document}
+
+\section{Übung 09}
+
+\subsection{H 9-1}
+
+\textsl{Beweisen Sie das folgende Strukturen \emph{Semiringe} sind!}
+
+\begin{enumerate}[(a)]
+    \item $\Big(\mathcal{P}(\Sigma^*), \bigcup, \cdot, \varnothing, \{\varepsilon\} \Big)$
+    \item $\Big(\mathbb{R} \cup \{\infty\}, \oplus, +, \infty, 0 \Big) \;\text{mit}\; a \oplus b = -\log\big(e^{-a}+e^{-b}\big)$
+\end{enumerate}
+
+\subsubsection{Eigenschaften eines Semiringes}
+\begin{enumerate}
+    \item Addition ist assoziativ
+    \item Addition ist kommutativ
+    \item Einselement für Addition
+    \item Links- und Rechtsdistributiv für Addition und Multiplikatin
+    \item Multiplikation ist assoziativ
+\end{enumerate}
+
+\subsection{H 9-2}
+
+\textsl{Geben Sie \emph{sternfreie rationale Ausdrücke} für die Sprachen an, die durch folgende First-Order Sätze beschrieben sind!}
+
+$\Sigma = \big\{a,b,c\big\}$
+
+\begin{enumerate}[(a)]
+    \item $\forall x \forall y\Big[\big(P_b(x) \land (x < y) \land P_b(y)\big) \rightarrow \big(\forall z (x < y < z) \rightarrow \lnot P_c(z)\big)\Big]$
+    \item $\forall x \exists y \Big( P_a(x) \rightarrow y = x+1 \land P_a(y)\Big)$
+    \item $\forall x \forall y \Big[ y = x+1 \rightarrow \big(P_a(x) \leftrightarrow P_b(y)\big)\Big]$
+\end{enumerate}
+
+\subsection{H 9-3}
+
+\textsl{Bestimmen Sie die Verhalten des folgenden gewichteten Automaten über dem \emph{Semiring der rationalen Zahlen}. Geben Sie einen exakten Nachweis des bestimmten Verhaltens an!}
+
+\end{document}

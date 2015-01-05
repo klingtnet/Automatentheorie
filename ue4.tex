@@ -1,0 +1,132 @@
+\documentclass{scrartcl}
+\addtokomafont{disposition}{\rmfamily}
+
+\usepackage{scrpage2}
+\usepackage{xltxtra}
+\usepackage{polyglossia}
+\usepackage{lastpage}
+\usepackage{amsmath, amssymb}
+\usepackage{stmaryrd}
+\usepackage{caption}
+\usepackage{csquotes}
+\usepackage{tikz}
+\usepackage{fontspec}
+% \setmainfont{Linux Libertine O}
+\usetikzlibrary{arrows,automata}
+\usetikzlibrary{trees}
+
+\setmainlanguage{german}
+
+\setlength{\parskip}{\baselineskip}
+\setlength{\parindent}{0pt}
+
+\pagestyle{scrheadings}
+\clearscrheadfoot
+\ihead[]{Andreas Linz, Lucas Stadler}
+\chead[]{\textsc{Automatentheorie}}
+\ohead[]{\today}
+\cfoot[\pagemark]{\textnormal{\pagemark{} / \pageref{LastPage}}}
+\setheadsepline{1pt}
+
+\begin{document}
+
+\section{Übung 04}
+
+\subsection{H 4-1}
+
+\begin{itemize}
+
+\item[a)] \begin{align*}
+g|_{A^0} &= \left\{(1,z)\;|\;1\in A, z = f(x) = 1 \in M\right\}\\
+g|_{A^1} &= \left\{(x,z)\;|\;x\in A \wedge f(x) = z \in M\right\}\\
+g|_{A^2} &= \left\{(xy,z)\;|\;x,y\in A \wedge z = f(x)\cdot f(y)\right\}\\
+         &\vdots\\
+g|_{A^{n+1}} &= \left\{(u\cdot v,z)\;|\;u\in A^n, v \in A \wedge z = g|_{A^n}(u) \cdot f(v)\right\}
+\end{align*}
+$g$ ist ein Morphismus weil es die folgen Eigenschaften erfüllt:
+\begin{itemize}
+  \item das Einselement wird abgebildet durch $g|_{A^0}$
+  \item $\forall x,y \in A : g(x\cdot y) = g(x) \cdot g(y)$
+\end{itemize}
+\item[b)] Sei $f : A \mapsto M$ eine surjektive Abbildung. Nach \textit{Theorem 2.4a} gibt es einen Morphismus $g : A^* \mapsto M$ mit $g|_A = f$. Da $f$ bereits surjektiv ist, so ist $g$ trivialerweise auch surjektiv und somit ein Epimorphismus.
+
+\end{itemize}
+\newpage
+
+\subsection{H 4-2}
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[node distance=3cm, auto, >=stealth]
+  \node[state, initial by arrow, initial text={}] (q_0) {0};
+  \node[state,accepting by arrow] (q_2) [right of=q_0] {2};
+  \node[state,accepting by arrow] (q_1) [above of=q_2] {1};
+  \node[state,accepting by arrow] (q_3) [below of=q_2] {3};
+
+  \path[->] (q_0) edge [loop above] node {0,1,2} (q_0)
+            (q_0) edge node [near start] {2} (q_1)
+            (q_1) edge [loop above] node {0,1,2} (q_1)
+            (q_0) edge node [near start] {3} (q_2)
+            (q_2) edge [loop above] node {0,1,2,3} (q_2)
+            (q_0) edge node [near start] {6} (q_3)
+            (q_3) edge [loop above] node {0,1,2,4,5,6} (q_3)
+  ;
+\end{tikzpicture}
+\caption*{a)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[node distance=3cm, auto, >=stealth]
+  \node[state, initial by arrow, initial text={}] (q_0) {0};
+  \node[state,accepting by arrow] (q_1) [right of=q_0] {1};
+
+  \path[->] (q_0) edge [loop above] node {$\{0\} \cup E$} (q_0)
+            (q_0) edge [bend left]  node {$U$} (q_1)
+            (q_1) edge [bend left] node {$U$} (q_0)
+            (q_1) edge [loop above] node {$\{0\} \cup E$} (q_1)
+  ;
+\end{tikzpicture}
+\caption*{b)}
+\end{figure}
+
+\subsection{H 4-3}
+
+\begin{itemize}
+\item \textbf{(a)}: $L = \{a, aaa\}^* = \{\epsilon, a, aa, aaa, aaaa, \ldots\} = \{a\}^*$:
+
+  $\{a\}^*$ hat lediglich eine Äquivalenzklasse: $[a] = a^*$, demzufolge gilt dasselbe auch für $\{a, aaa\}^*$. Das syntaktische Monoid besteht demnach auch nur aus dieser einen Äquivalenzklasse.
+
+\item \textbf{(b)}: $L = \{ba\}^*$ im Monoid $\{a, b\}^*$ hat folgendes syntaktisches Monoid:
+  \begin{equation*}
+    \{[a] = a(ba)^*, [b] = (ba)^*b, [ab] = (ab)^*, [ba] = (ba)^*\}
+  \end{equation*}
+
+\item \textbf{(c)}: $L = \{2, 3, 6\}$ im Monoid $(\mathbb{N}, \text{max})$:
+  \begin{align*}
+    [1] &= \{0, 1\}\\
+    [2] &= [3] = \{2, 3\}\\
+    [6] &= \{4, 5, 6\}\\
+    [42] &= \{x \in \mathbb{N} : x > 6\}
+  \end{align*}
+
+\item \textbf{(d)}: $L = \{7\}$ im Monoid $(\mathbb{Z}, +)$:
+
+  Zu $L$ gibt es unendlich viele Äquivalenzklassen: $[1] = \{6\}, [2] = \{5\}, \ldots$, welche alle die Form $[x] = y$ mit $x + y = 7$ haben.
+
+  Demnach ist das syntaktische Monoid $M/\sim_\{7\}$ ebenfalls unendlich:
+  \begin{equation*}
+    \{[x] = y \text{ mit } y \in \mathbb{Z} \wedge x + y = 7\}
+  \end{equation*}
+
+\item \textbf{(e)}: $L = \{(n, n) : n \in \mathbb{N}\}$ im Monoid $(\mathbb{N}, +)^2$:
+
+  Für diese Sprache gibt es ebenfalls unendlich viele Äquivalenzklassen:
+  \begin{equation*}
+    [(x, y)] = \{(u, v) \in \mathbb{N}^2 \text{ mit } x + u = y + u\}
+  \end{equation*}
+
+  Das syntaktische Monoid enthält alle Äquivalenzklassen dieser Form.
+\end{itemize}
+
+\end{document}

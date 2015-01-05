@@ -1,0 +1,98 @@
+\documentclass{scrartcl}
+\addtokomafont{disposition}{\rmfamily}
+
+\usepackage{scrpage2}
+\usepackage{xltxtra}
+\usepackage{polyglossia}
+\usepackage{lastpage}
+\usepackage{amsmath, amssymb}
+\usepackage{stmaryrd}
+\usepackage{caption}
+\usepackage{csquotes}
+\usepackage{tikz}
+\usepackage{fontspec}
+% \setmainfont{Linux Libertine O}
+\usetikzlibrary{arrows,automata}
+\usetikzlibrary{trees}
+
+\setmainlanguage{german}
+
+\setlength{\parskip}{\baselineskip}
+\setlength{\parindent}{0pt}
+
+\pagestyle{scrheadings}
+\clearscrheadfoot
+\ihead[]{Andreas Linz}
+\chead[]{\textsc{Automatentheorie}}
+\ohead[]{\today}
+\cfoot[\pagemark]{\textnormal{\pagemark{} / \pageref{LastPage}}}
+\setheadsepline{1pt}
+
+\begin{document}
+
+\section{Übung 03}
+
+\subsection{H 3-1}
+
+Sei $\mathcal{A}$ ein endlicher Automat mit $n$ Zuständen und das Wort $w \in L(\mathcal{A})$ mit $|w| \geq n$, dann existiert ein erfolgreicher Run $u = q_0 \rightarrow q_1 \rightarrow \ldots \rightarrow q_n$ mit $|u| = n+1$.\\
+Da $|Q_\mathcal{A}| = n$ ist, muss innerhalb des Runs $u$ ein Zustand $q_i$ mehrfach vorkommen. Die wiederholgen Transitionen $q_i \rightarrow \ldots \rightarrow q_i$ aus $u$ entsprechen dem Teilwort $y$ der Dekomposition $w = xy^kz$.\\
+Somit akzeptiert der Automat $\mathcal{A}$ jedes Wort der Form $w = xy^kz$ für alle $k \geq 0$.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[node distance=2cm, auto, >=stealth]
+  \node[state, initial by arrow, initial text={}] (q_0) {$q_0$};
+  \node[] (q_1) [right of=q_0] {\ldots};
+  \node[state] (q_i) [right of=q_1] {$q_i$};
+  \node[] (q_3) [right of=q_i] {\ldots};
+  \node[state,accepting by arrow] (q_4) [right of=q_3] {$q_n$};
+
+  \path[->] (q_0) edge node {} (q_1)
+            (q_1) edge node {} (q_i)
+            (q_i) edge node {} (q_3)
+            (q_i) edge [loop above] node {\ldots} (q_i)
+            (q_3) edge node {} (q_4)
+  ;
+\end{tikzpicture}
+\caption*{Schema für $\mathcal{A}$}
+\end{figure}
+
+\subsection{H 3-2}
+
+Sei $L = \left\{ a^nb^n\;\middle|\;n \in \mathbb{N} \right\}$ eine von einem endlichen Automaten erkennbare Sprache, dann exisitiert ein Automat $\mathcal{A} \text{ mit } L = L(\mathcal{A})$.
+Für Wörter $w \in L(\mathcal{A})$ mit $|w| \geq m, m = |Q_\mathcal{A}|$ existiert eine Dekomposition $w = xyz$ mit $y\neq\varepsilon$ und $xy^kz \in L(\mathcal{A}), k \geq 0$ nach Lemma 1.11.\\
+Für $n = 1$ ist $w = ab$ und die möglichen Dekompositionen $w=xaz$ oder $w=xbz$. Dann muss $w=xy^kz \in L(\mathcal{A})$ sein, für $k \geq 0$ und $y=a$ oder $y=b$. Dies ist aber nicht der Fall, da entweder die Anzahl an $a$ oder $b$ für jedes $k\neq1$ verschieden ist und somit $m\not\in L$. \hfill$\lightning$
+
+\subsection{H 3-3}
+
+\begin{itemize}
+    \item[a)] $L(\mathcal{A}) = \varepsilon \cup ab^* \cup bb^* \cup a\left\{a,b\right\}^*ab^*$
+    \item[b)] Schritte zur Erstellung des normalisierten Automaten, nach Lemma 1.6, für die Sprache $L$
+    \begin{itemize}
+        \item Konstruktion des Initialzustandsnormalisierten Automaten $\mathcal{A}_i$
+        \item Finalzustandsnormalisierung auf $\mathcal{A}_i$
+        \item Einfügen der Transition für die Symbole $a,b$ von Initial- zu Finalzustand um Wörter der Länge 1 zu akzeptieren
+    \end{itemize}
+
+    \begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[node distance=4cm, auto, >=stealth]
+      \node[state, initial by arrow, initial text={}] (q_0) {0};
+      \node[state](q_1) [right of=q_0] {1};
+      \node[state](q_2) [below of=q_0] {2};
+      \node[state,accepting by arrow] (q_3) [right of=q_2] {3};
+
+      \path[->] (q_0) edge node {a} (q_1)
+                (q_0) edge node {a,b} (q_2)
+                (q_0) edge node [auto, sloped, near start] {a,b} (q_3)
+                (q_1) edge [loop right] node {a,b} (q_1)
+                (q_1) edge node [near end] {a} (q_2)
+                (q_1) edge node {a} (q_3)
+                (q_2) edge [loop left] node {b} (q_2)
+                (q_2) edge node {b} (q_3);
+    \end{tikzpicture}
+    \caption*{Automat zu b)}
+    \end{figure}
+\end{itemize}
+
+\end{document}

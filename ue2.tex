@@ -1,0 +1,133 @@
+\documentclass{scrartcl}
+
+\usepackage{scrpage2}
+\usepackage{xltxtra}
+\usepackage{polyglossia}
+\usepackage{lastpage}
+\usepackage{amsmath, amssymb}
+\usepackage{caption}
+\usepackage{csquotes}
+\usepackage{tikz}
+\usepackage{fontspec}
+% \setmainfont{Linux Libertine O}
+\usetikzlibrary{arrows,automata}
+\usetikzlibrary{trees}
+
+\setmainlanguage{german}
+
+\setlength{\parskip}{\baselineskip}
+\setlength{\parindent}{0pt}
+
+\pagestyle{scrheadings}
+\clearscrheadfoot
+\ihead[]{Andreas Linz}
+\chead[]{\textsc{Automatentheorie}}
+\ohead[]{\today}
+\cfoot[\pagemark]{\textnormal{\pagemark{} / \pageref{LastPage}}}
+\setheadsepline{1pt}
+
+\begin{document}
+
+\section{Übung 02}
+
+\subsection{H 2-1}
+
+\subsubsection{$L_1 = L_2 \cup L_1 L_3$}
+
+Die Sprache $L_1 = L_2 \cup L_1 L_3 = L_2 L_3^*$ ist nach dem folgenden Prinzip aufgebaut:
+
+\begin{align*}
+L_1^0 &= L_2\\
+L_1^1 &= L_2 \cup L_1^0 L_3 = L_2 \cup L_2 L_3\\
+L_1^2 &= L_2 \cup L_2 L_3 \cup L_2 L_3 L_3\\
+      &\ldots\\
+L_1^n &= \bigcup_{k=0}^n L_2 L_3^k
+\end{align*}
+
+Wobei $L_1^n$ jeweils $n$ \enquote{Expansionen} der rekursiven Definition von $L_1$ sind.
+
+Der Beweis erfolgt über Induktion in der Anzahl der Expansionen der rekursiven Definition:
+
+\begin{align*}
+n = 0&: L_1^0 = L_2\\
+n = 1&: L_1^1 = L_2 \cup L_1^0 L_3\\
+\text{Sei }& L_1^n = \bigcup_{k = 0}^n L_2 L_3^k\\
+n + 1&: L_1^{n+1} = L_2 \cup L_1^n L3 = L_2 \cup (\bigcup_{k = 0}^n L_2 L_3^k) L_3 = L_2 L_3^{n+1}
+\end{align*}
+
+\subsubsection{$L_1 = L_2 \cup L_3 L_1$}
+
+Die Expansion der rekursiven Definition ist erneut ein Hinweis auf die resultierende Sprache:
+
+\begin{align*}
+L_1^0 &= L_2\\
+L_1^1 &= L_2 \cup L_3 L_1^0 = L_2 \cup L_3 L_2\\
+      &\ldots\\
+L_1^n &= \bigcup_{k=0}^n L_3^k L_2
+\end{align*}
+
+Der Beweis erfolgt analog zum obigen Beweis für $L_1 = L_2 \cup L_1 L_3$.
+
+\subsection{H 2-2}
+
+Der Automat $\mathcal{A}$ akzeptiert die Sprache $L(\mathcal{A}) = a\left\{a,b\right\}^*$, da aus dem Initialzustand stets eine Transition welche das Symbol $a$ akzeptiert ausgeführt werden muss und alle weiteren Wörter der Sprache aus Transitionen über den Zyklus mit der Transition $\{a,b\}^*$ aus Finalzustand $6$ akzeptiert werden können.
+
+\subsubsection{Beweis}
+
+\begin{align*}
+\subseteq: w &\in L(\mathcal{A}) \Rightarrow \exists \text{ run } u \text{ für } w \in \mathcal{A}\\
+%Q   &= \{1, 2, 3, 4, 5, 6, 7\}\\
+%I   &= \{1\}\\
+%F   &= \{5, 6\}\\
+%u   &= q_0 \ldots q_n,\quad q_0 \in I \wedge q_n \in F \wedge q_i \in Q, i \in \mathbb{N}\\
+%    &= q_0 \xrightarrow{a} q_1 … q_n\\
+%\text{Sei } q_n &= 6\\
+u   &= q1 \xrightarrow{a} 6 \underbrace{\left[\xrightarrow{\{a,b\}} 6 \right]^*}_{\{a,b\}^*}\quad\text{ist erfolgreicher run in }\mathcal{A}\\
+    &\text{die einzige Alternative zur ersten Transition ist } 1\xrightarrow{a}2\\
+    &\text{d.h.}\;w = aw',\;\text{wobei jedes}\;w'\in A^*,\;\text{was bereits in}\;u\;\text{enhalten ist}
+\\
+    &\Rightarrow L(\mathcal{A}) = \left\{ a\{a,b\}^* \right\}\\[\baselineskip]
+\supseteq: w &= aw',\quad w' \in \{a,b\}^*\\
+    &\Rightarrow \exists u: 1 \xrightarrow{a} 6 \underbrace{\left[\xrightarrow{\{a,b\}} 6 \right]^*}_{\{a,b\}^*}\\
+    &u \text{ ist erfolgreicher run }\\
+    &\Rightarrow w \in L(\mathcal{A})
+\end{align*}
+
+\hfill$\blacksquare$
+
+\subsection{H 2-3}
+
+\newcommand{\dotcup}{\ensuremath{\mathaccent\cdot\cup}}
+
+\begin{subequations}
+\textbf{(b)} Finalzustandsnormalisierter Automat $\mathcal{A}_f$ mit $L(\mathcal{A}_f) = L(\mathcal{A})$
+\begin{align*}
+\text{Sei } \mathcal{A}_f &= \left(Q', T', I', F'\right) mit:\\
+    Q' &= Q\;\dotcup\;\{f\}\\
+    I' &= \begin{cases}
+        I,              & \text{wenn } \varepsilon \not\in L(\mathcal{A})\\
+        I\cup\{f\},     & \text{wenn } \varepsilon \in L(\mathcal{A})
+  \end{cases}\\
+    F' &= \{f\}\\
+    T' &= T \cup \left\{(p,a,f)\;|\;a \in A, \exists q \in F : (p,a,q) \in T \right\}\\[\baselineskip]
+    \text{Sei } \varepsilon &\neq w = a_1 \ldots a_n \in A^*.\\
+    w &\in L(\mathcal{A})\\
+    &\Leftrightarrow \exists \text{ run } q_0 \xrightarrow{a_1} q_1 \xrightarrow{a_2} … \xrightarrow{a_{n-1}} q_{n-1} \xrightarrow{a_n} q_n \text{ in } \mathcal{A} \text{ mit } q_0 \in I, q_n \in F\\
+    &\Leftrightarrow \exists \text{ run } q_0 \xrightarrow{a_1} q_1 \xrightarrow{a_2} … \xrightarrow{a_{n-1}} q_{n-1} \xrightarrow{a_n} f \text{ in } \mathcal{A} \text{ mit } q_0 \in I\\
+    &\Leftrightarrow w \in L(\mathcal{A}_f)\\
+    \varepsilon &\in L(\mathcal{A})\\
+    &\Leftrightarrow f \in I'\\
+    &\Leftrightarrow I' \cap F' ≠ \varnothing\\
+    &\Leftrightarrow \varepsilon \in L(\mathcal{A}_i)
+\end{align*}
+\textbf{(c)}
+Normalisierter Automat $\mathcal{A}_n$ mit $L(\mathcal{A}_n) = L(\mathcal{A}) \setminus \{\varepsilon\}$
+
+Es ist zuerst die Initial- und Finalzustandsnormalisierung auf den Automaten anzuwenden. Da nun $I \cap U = \varnothing$ ist, d.h. es gibt keine gemeinsamen Initial- und Finalzustaende im Automaten, wird $\varepsilon$ vom resultierenden Automaten nicht mehr akzeptiert. Ebenfalls werden Wörter der Länge 1 nach der Ausführung von \textbf{(a)} und \textbf{(b)} nicht mehr akzeptiert. Dies muss im folgenden korrigiert werden, dabei markiere $'$ die Mengen des resultierenden Automaten.
+
+\begin{align*}
+        \forall (p,a,q) &\in T : p \in I \wedge q \in F : \exists (i,a,f) \in T' : i \in I' \wedge f \in F'
+\end{align*}
+\end{subequations}
+
+\end{document}

@@ -1,0 +1,83 @@
+\documentclass{scrartcl}
+\addtokomafont{disposition}{\rmfamily}
+
+\usepackage{scrpage2}
+\usepackage{xltxtra}
+\usepackage{polyglossia}
+\usepackage{lastpage}
+\usepackage{amsmath, amssymb}
+\usepackage{stmaryrd}
+\usepackage{caption}
+\usepackage{csquotes}
+\usepackage{tikz}
+\usepackage{fontspec}
+\usepackage{enumerate}
+\usepackage{mathtools} % coloneqq
+% \setmainfont{Linux Libertine O}
+\usetikzlibrary{arrows,automata}
+\usetikzlibrary{trees}
+
+\setmainlanguage{german}
+
+\setlength{\parskip}{\baselineskip}
+\setlength{\parindent}{0pt}
+
+\pagestyle{scrheadings}
+\clearscrheadfoot
+\ihead[]{Andreas Linz, Lucas Stadler}
+\chead[]{\textsc{Automatentheorie}}
+\ohead[]{\today}
+\cfoot[\pagemark]{\textnormal{\pagemark{} / \pageref{LastPage}}}
+\setheadsepline{1pt}
+
+\begin{document}
+
+\section{Übung 07}
+
+\subsection{H 7-1: \textsl{MSO-Formeln für Sprachen über $\{a,b\}$}}
+
+\begin{enumerate}[(a)]
+    \item $\{a,b\}^+$
+    $$\varphi_a \coloneqq \forall X : X \neq \varnothing \land \forall x \in X : P_a(x) \lor P_b(x)$$
+    \item $\left\{w : bba \;\text{ist Faktor von}\;w\right\}$
+    $$\varphi_b \coloneqq \exists x,y,z : y = x+1 \land z = x+1 \land P_b(x) \land P_b(y) \land P_a(z)$$
+    \item $\left\{w : |w| \in \mathbb{N} \land |w|*3 \neq 0  \right\}$
+    \begin{align*}
+        \varphi_c \coloneqq \exists X,Y,Z &: \bigcap XYZ = \varnothing \land \forall p \left(p \in X \lor p \in Y \lor p \in Z\right)\\
+            &\land \exists x \in X, \exists z \in Z : \forall y\left(x < y < z\right)\\
+            &\land \forall x \in X : x + 1 \in Y\\
+            &\land \forall y \in Y : y + 1 \in Z\\
+            &\land \forall z \in Z : \exists y \in Y : z = y + 1\\
+    \end{align*}
+    \item $\left\{w : \text{zwischen zwei Vorkommen von}\;bb\;\text{kommt mindestens ein}\;a\;\text{vor}\right\}$
+    \begin{align*}
+        \varphi_d \coloneqq \forall x,y &: y = x+1 \land P_b(x) \land P_b(y)\\
+                    &\land \exists v,w : x \leq y \land w = v+1 \land P_b(v) \land P_b(w)\\
+                    &\rightarrow \exists z : y < z < v \land P_a(z)
+    \end{align*}
+\end{enumerate}
+
+\subsection{H 7-2: rationale Ausdrücke für Sprachen über dem Alphabet $\{a,b\}$ an}
+
+\begin{enumerate}[(a)]
+    \item $L\left(\forall x \forall y \left[( P_a(x) \land x = y + 1) \rightarrow P_b(y) )\right]\right)$
+        $$L = \{a\} \cup \left[ (ba)^* \cup b^* \right] $$
+    \item $L\left(\exists x \exists y \left[ \forall z ( z \neq y \rightarrow z \leq y) \land P_b(x) \land P_b(y) \land x = y+1 \right]\right)$
+        $$ L = \varnothing $$
+    \item $L\left(\forall X \exists y \left[ y \in X \land P_a(y) \right]\right)$
+        $$ L = a^+ $$
+    \item $L\left(\left( \exists x (\lnot\exists y \left[ x<y \land P_a(x)\right]) \right) \lor \left( \exists y (\lnot\exists x \left[ x<y \land P_a(y)\right]) \right) \right)$
+        $$ L = A^*a $$
+\end{enumerate}
+
+\subsection{H 7-3: Sätze erster Ordnung für MSO-Sätze}
+
+\begin{enumerate}[(a)]
+    \item $\forall X \forall x \forall y \forall z \left[ (x \in X \land y \in X \land z \in X \land x \neq y \land x \neq z \land z \neq y) \rightarrow \left( P_a(x) \land P_a(y) \land P_a(z)\right) \right]$
+        $$ \forall x,y,z (x\neq y \land y \neq z \land z \neq y) \rightarrow ( P_a(x) \land P_a(y) \land P_a(z)) $$
+    \item $\exists X \exists Y \forall x \forall y \left[ \left( x \in X \land y \in Y \right) \rightarrow \left( x \leq y \land P_b(x) \land P_a(y) \right)\right]$
+        $$ \exists x,y ( x < y \land P_b(x) \land P_a(y) )$$
+    \item $\forall X \forall x \left[ (x \in X \rightarrow P_a(x)) \rightarrow \exists y (P_b(y) \land \forall z \left(z \in X \rightarrow P_b(z)\right)\right]$
+        $$\bot$$
+\end{enumerate}
+\end{document}

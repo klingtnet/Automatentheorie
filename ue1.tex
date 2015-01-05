@@ -1,0 +1,226 @@
+\documentclass{scrartcl}
+
+\usepackage{scrpage2}
+\usepackage{xltxtra}
+\usepackage{polyglossia}
+\usepackage{lastpage}
+\usepackage{amsmath, amssymb}
+\usepackage{caption}
+\usepackage{csquotes}
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata}
+\usetikzlibrary{trees}
+
+\setmainlanguage{german}
+
+\setlength{\parskip}{\baselineskip}
+\setlength{\parindent}{0pt}
+
+\pagestyle{scrheadings}
+\clearscrheadfoot
+\ihead[]{Andreas Linz}
+\chead[]{\textsc{Automatentheorie}}
+\ohead[]{\today}
+\cfoot[\pagemark]{\textnormal{\pagemark{} / \pageref{LastPage}}}
+\setheadsepline{1pt}
+
+\begin{document}
+
+\section{Übung 01}
+
+\subsection{H 1-1}
+
+Die Semigruppe aller Wörter über dem endlichen Alphabet $A$ ist genau dann mit der Konkatenation $\cdot$ kommutativ, wenn $A=\{u\;|\;v = u^k,\;k \in \mathbb{N}_0\}$, also d.h. wenn $v$ eine Potenz von $u$ ist.
+
+\begin{itemize}
+    \item[$n=0$]
+    \begin{align*}
+        u &= A^*\\
+        v&=u^n = u^0 = \epsilon\\
+        u\cdot\epsilon &= \epsilon\cdot u
+    \end{align*}
+    \item[$n>0$]
+    \begin{align*}
+        v &= u^n = \overbrace{u\ldots u}^{n-mal}\\
+        v \cdot u &= u^{n+1} = \underbrace{u^n}_{=v} \cdot u = u \cdot v = u \cdot u^n
+    \end{align*}
+    \hfill$\blacksquare$
+\end{itemize}
+
+\subsection{H 1-2}
+
+Anmerkung: Die Zustände der Automaten wurden im Uhrzeigersinn markiert.
+
+\subsubsection{Sprache $\{a,b\}^*ab$}
+
+\begin{align*}
+  \text{\enquote{$\subseteq$}}&: w \in L(\mathcal{A}) \Rightarrow \exists \text{ run } u \text{ für } w \text{ in } \mathcal{A}\\
+  &\Rightarrow q_0 = 1, q_n = 3\\
+  &\Rightarrow \text{ 3 mögliche Pfade die jeweils $ab$ ausführen: }\\
+    &\hspace{3em}1 \xrightarrow{a} 2 \xrightarrow{b} 3\\
+    &\hspace{3em}2 \xrightarrow{a} 2 \xrightarrow{b} 3\\
+    &\hspace{3em}3 \xrightarrow{a} 2 \xrightarrow{b} 3\\
+  &\text{$\mathcal{A}_1$ ist vollständig und zusammenhängend\footnotemark}\\
+  &\Rightarrow u = \underbrace{q_0 \cdot\cdot\cdot q_{n-2}}_{v \in A^* = \{a, b\}^*} \xrightarrow{a} q_{n-1} \xrightarrow{b} q_n\\
+  \\
+  \text{\enquote{$\supseteq$}}&:\ w = w' ab \text{ mit } w' \in A^*\\
+  &\Rightarrow \exists u: \underbrace{1 \rightarrow \cdot\cdot\cdot q_{n-2}}_{w'} \xrightarrow{a} 2 \xrightarrow{b} 3\\
+    &\hspace{2cm}\text{mit } q_{n-2} \in \{1, 2, 3\}\\
+    %\text{ da $\mathcal{A}_1$ vollständig und zusammenhängend}\\
+  &\Rightarrow \text{$u$ ist ein erfolgreicher run}\\
+  &\Rightarrow w \in L(\mathcal{A}_1)\\
+\end{align*}
+\hfill$\blacksquare$
+\footnotetext{$\forall_{j,h} \in Q\;:\;\exists run (u)\;:\;q_0=j\wedge q_n=k$}
+
+\subsubsection{Sprache $ab*$}
+
+\begin{align*}
+    \text{\enquote{$\subseteq$}}&: w \in L(\mathcal{A}_2) \Rightarrow \exists \text{\;run $u$ für $w$ in $A$}\\&\Rightarrow q_0 = 1, q_n = 3\\
+    &\Rightarrow \nexists \text{ run mit } q_i = 2 \text{ für } 0 \leq i \leq n\\
+    &\Rightarrow \text{einziger erfolgreicher run ist:}\\
+    &\hspace{3em} 1 \xrightarrow{a} 3 \xrightarrow{b} \cdot\cdot\cdot \xrightarrow{b} 3\\
+    &\Rightarrow w = ab^*\\
+    \\
+    \text{\enquote{$\supseteq$}} &:\ w = ab^*\\
+    &\Rightarrow u: 1 \xrightarrow{a} \underbrace{3 \xrightarrow{b} \cdot\cdot\cdot \xrightarrow{b} 3}_{b^*}\\
+    &\Rightarrow \text{$u$ ist erfolgreicher run für $w$}\\
+    &\Rightarrow w \in L(\mathcal{A}_2)\\
+\end{align*}
+\hfill$\blacksquare$
+
+\subsection{H 1-3}
+
+$\mathcal{A} = \{w\text{ so dass }|w|_a\;\mod(2)=1, |w|_b=2\}$
+
+\newcommand{\odd}{\mathcal{A}_{odd}}
+\newcommand{\even}{\mathcal{A}_{even}}
+
+Die Konstruktion des Automaten wurde mit Hilfe von zwei Teilautomaten durchgeführt $\even$, $\odd$, die gerade und ungerade Anzahlen von Buchstaben akzeptieren:
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[node distance=2cm, auto, >=stealth]
+  \node[initial,state] (q_0)  {};
+  \node[state,accepting by arrow] (q_1) [right of=q_0] {};
+
+  \path[->] (q_0) edge node {a} (q_1)
+            (q_1) edge [bend left] node {a} (q_0);
+\end{tikzpicture}
+\caption*{$\odd{}$}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[node distance=2cm, auto, >=stealth]
+  \node[initial,state] (q_0)  {};
+  \node[state] (q_1) [right of=q_0] {};
+  \node[state,accepting by arrow] (q_2) [right of=q_1] {};
+
+  \path[->] (q_0) edge node {a} (q_1)
+            (q_1) edge node {a} (q_2)
+            (q_2) edge [bend left] node {a} (q_1);
+\end{tikzpicture}
+\caption*{$\even{}$}
+\end{figure}
+
+Um insgesamt eine ungerade Anzahl an \enquote{a}s zu erhalten gibt es nun 11 verschiedene Varianten sie zwischen den \enquote{b}s zu verteilen
+\begin{itemize}
+    \item $o$ steht für eine ungerade und $e$ für eine gerade Anzahl an \enquote{a}s
+    \item $a^*ba^*ba^*$ ($ooo$, $oee$, $eeo$, $eoe$)
+    \item $a^*ba^*b$ und $ba^*ba^*$ ($oe$, $eo$)
+    \item $a^*bb$, $bba^*$ und $ba^*b$ ($o$)
+\end{itemize}
+
+Da durch die angegebenen Teilautomaten bekannt ist wie ungerade bzw. gerade Anzahlen von \enquote{a}s erkannt werden können und zwischen diesen nur ein $b$ vorkommen kann, ist es möglich die 11 Varianten mit einem Automaten zu realisieren.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[grow=right, sloped, ->, >=stealth]
+\tikzstyle{level 1}=[level distance=2cm, sibling distance=4cm]
+\tikzstyle{level 2}=[level distance=1.5cm, sibling distance=1cm]
+\tikzstyle{final}=[text=red]
+\node {}
+child {
+    node {$\odd$}
+    child {node {$b$}
+        child {
+            node[final] {$b$}
+            child {
+                node[final] {$\even$}
+            }
+        }
+        child {
+            node {$\even$}
+            child {
+                node[final] {$b$}
+                child {
+                    node[final] {$\even$}
+                }
+            }
+        }
+        child {
+            node {$\odd$}
+            child {
+                node[final] {$b$}
+                child {
+                    node[final] {$\odd$}
+                }
+            }
+        }
+    }
+}
+child {
+    node {$\even$}
+    child {
+        node {$b$}
+        child {
+            node {$b$}
+            child {
+                node[final] {$\odd$}
+            }
+        }
+        child {
+            node {$\even$}
+            child {
+                node {$b$}
+                child {
+                    node[final] {$\odd$}
+                }
+            }
+        }
+        child {
+            node {$\odd$}
+            child {
+                node[final] {$b$}
+                child {
+                    node[final] {$\even$}
+                }
+            }
+        }
+    }
+}
+child {
+    node {$b$}
+    child {
+        node {$\odd$}
+        child {node[final] {$b$}
+            child {node[final] {$\even$}}
+        }
+    }
+    child {node {$\even$}
+        child {node {$b$}
+            child {node[final] {$\odd$}}
+        }
+    }
+    child {node {$b$}
+        child {node[final] {$\odd$}}
+    }
+};
+\end{tikzpicture}
+\caption*{Spezifikation von $\mathcal{A}$, Finalzustände sind \textcolor{red}{rot}}
+\end{figure}
+
+Der Automat $\mathcal{A}$ ist nicht vollständig und aufgrund der Wahl zwischen $\odd$ und $\even$ \enquote{a}-Sequenzen auch \emph{nicht} deterministisch.
+
+\end{document}

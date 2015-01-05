@@ -1,0 +1,77 @@
+\documentclass{scrartcl}
+\addtokomafont{disposition}{\rmfamily}
+
+\usepackage{scrpage2}
+\usepackage{xltxtra}
+\usepackage{polyglossia}
+\usepackage{lastpage}
+\usepackage{amsmath, amssymb}
+\usepackage{stmaryrd}
+\usepackage{caption}
+\usepackage{csquotes}
+\usepackage{tikz}
+\usepackage{fontspec}
+\usepackage{enumerate}
+% \setmainfont{Linux Libertine O}
+\usetikzlibrary{arrows,automata}
+\usetikzlibrary{trees}
+
+\setmainlanguage{german}
+
+\setlength{\parskip}{\baselineskip}
+\setlength{\parindent}{0pt}
+
+\pagestyle{scrheadings}
+\clearscrheadfoot
+\ihead[]{Andreas Linz, Lucas Stadler}
+\chead[]{\textsc{Automatentheorie}}
+\ohead[]{\today}
+\cfoot[\pagemark]{\textnormal{\pagemark{} / \pageref{LastPage}}}
+\setheadsepline{1pt}
+
+\begin{document}
+
+\section{Übung 05}
+
+\subsection{H 5-1}
+
+Alle Transitionen von $q_0$ zu $q_3$ addieren mindestens $3$, weshalb die kleinste vom Automaten akzeptierte Zahl $3$ ist. Ob die akzeptierte Zahl gerade oder ungerade ist, hängt davon ab mit welcher Zahl man $q_0$ \enquote{verlässt}. Der ursprüngliche Automat kann vom Finalzustand aus nur gerade Zahlen hinzuaddieren, akzeptiert aber dennoch, je nach Zahl aus $q_0$, alle Zahlen aus $ n \in \mathbb{N}\;|\;n \geq 3$, weshalb über $q_1$ im minimalen Automaten beliebige Zahlen aus $\mathbb{N}$ addiert werden können.
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[node distance=3cm, auto, >=stealth]
+  \node[state, initial by arrow, initial text={}] (q_0) {0};
+  \node[state,accepting by arrow] (q_1) [right of=q_0] {1};
+
+  \path[->] (q_0) edge [loop above] node {$\mathbb{N}$} (q_0)
+            (q_0) edge node {3} (q_1)
+            (q_1) edge [loop above] node {$\mathbb{N}$} (q_1)
+  ;
+\end{tikzpicture}
+\caption*{$L=\{n \in \mathbb{N}\;|\;n \geq 3\}$}
+\end{figure}
+
+\subsection{H 5-3}
+
+Wie aus Kapitel 3 bereits bekannt ist $A^* = \varnothing^c$.
+
+\begin{enumerate}[(a)]
+  \item \begin{align*}
+    a^+c^+ &= aa^*cc^*\\
+          &= a\{b,c\}^c c\{a,b\}^c\\
+        \{b,c\}^c  &= A^*\setminus \, A^* \cdot \{b,c\} \cdot A^* = a^*\\
+        \{a,b\}^c  &= A^*\setminus \, A^* \cdot \{a,b\} \cdot A^* = c^*
+  \end{align*}
+  \item \begin{align*}
+    (abc)^* &= \{\varepsilon\} \cup \left( aA^* \cap A^*c \right) \setminus A^* \cdot \left\{ aa, ac, ba, bb, cb, cc\right\} \cdot A^*
+  \end{align*}
+  \item \begin{align*}
+    \left\{w\;:\;|w|_a \leq 3 \right\} &= A^* \setminus A^*\cdot\{a\}\cdot A^*\cdot\{a\}\cdot A^*\cdot\{a\}\cdot A^*\cdot\{a\}\cdot A^*
+  \end{align*}
+  \item \begin{align*}
+    \left\{w\;:\;|w|_{abc}\right\}\,=\;&A^* \cdot \{abc\} \cdot A^* \cdot \{abc\} \cdot A^*\,\setminus\\
+    & A^* \cdot \{abc\} \cdot A^* \cdot \{abc\} \cdot A^* \cdot \{abc\}  \cdot A^*
+  \end{align*}
+\end{enumerate}
+
+\end{document}

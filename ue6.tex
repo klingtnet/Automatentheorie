@@ -1,0 +1,146 @@
+\documentclass{scrartcl}
+\addtokomafont{disposition}{\rmfamily}
+
+\usepackage{scrpage2}
+\usepackage{xltxtra}
+\usepackage{polyglossia}
+\usepackage{lastpage}
+\usepackage{amsmath, amssymb}
+\usepackage{stmaryrd}
+\usepackage{caption}
+\usepackage{csquotes}
+\usepackage{tikz}
+\usepackage{fontspec}
+\usepackage{enumerate}
+% \setmainfont{Linux Libertine O}
+\usetikzlibrary{arrows,automata}
+\usetikzlibrary{trees}
+
+\setmainlanguage{german}
+
+\setlength{\parskip}{\baselineskip}
+\setlength{\parindent}{0pt}
+
+\pagestyle{scrheadings}
+\clearscrheadfoot
+\ihead[]{Andreas Linz, Lucas Stadler}
+\chead[]{\textsc{Automatentheorie}}
+\ohead[]{\today}
+\cfoot[\pagemark]{\textnormal{\pagemark{} / \pageref{LastPage}}}
+\setheadsepline{1pt}
+
+\begin{document}
+
+\section{Übung 06}
+
+\subsection{H 6-1: \textsl{Welche der Monoide sind aperiodisch?}}
+
+\begin{enumerate}[a)]
+  \item $\left(\mathbb{Z}, +\right)$, nicht aperiodisch, da
+    $\forall x \in \mathbb{Z}, x \neq 0 : \left|x^n\right| < \left|x^{n+1}\right| = \left|x^n\right| + \left|x\right|$.
+  \item $\left(\mathbb{N}, min\right)$ ist aperiodisch, da wiederholte Anwendung von \textit{min} auf denselben Wert das gleiche Ergebnis liefern, also:
+  $$x^n = min(\underbrace{x, \ldots, x}_{\text{n-mal}}) = x$$
+  \newcommand{\cn}{\cdot_k}
+  \item $\left(\left\{0,1,2,\ldots,k\right\}\cn \right)$
+  $$x\cn y =
+    \begin{cases}
+      k           & x \cdot y > k\\
+      x \cdot y   & sonst
+    \end{cases}
+  $$
+  Für die Aperiodizität ist nur der Fall $2^n = 2^{n+1}$ relevant, da $0^n = 0^{n+1} = 0$,
+  $1^n = 1^{n+1} = 1$ und wenn $x^n = x^{n+1}$ für $x = 2$ gilt, dann gilt es auch für
+  alle $x > 2$.
+
+  Das kleinste $n$ für das $x^n = x^{n+1}$ gilt ist also $n = \left\lceil \log_2 k \right\rceil$:
+  \begin{align*}
+    2^n &= 2^{\left\lceil \log_2 k \right\rceil} = k\\
+    2^{n+1} &= 2^n \cdot 2 = 2^{\left\lceil \log_2 k \right\rceil} \cdot 2 = k \cn 2 = k\\
+    &\Rightarrow 2^n = 2^{n+1} \text{ für } n = \left\lceil \log_2 k \right\rceil
+  \end{align*}
+  \item Das Monoid $\left(\left\{1,A,B\right\}, \diamond\right)$ ist aperiodisch für alle $n \geq 1$, da:
+  $$
+    \forall x \in \{1,A,B\} : x^1 = x \diamond x = x\\
+  $$
+  Demzufolge gilt auch:
+  \begin{align*}
+    x^n &= \underbrace{x \diamond \ldots \diamond x}_{\text{n-mal}} = x\\
+    x^{n+1} &= x^n \diamond x = x
+  \end{align*}
+\end{enumerate}
+
+\subsection{H 6-2: \textsl{Index für sternfreie aperiodische Sprachen}}
+
+Def 3-2 (a): L ist aperiodisch $\Leftrightarrow \exists n \in \mathbb{N}\wedge\forall x,y,z \in M: xy^nz \Leftrightarrow xy^{n+1}z \in L$
+
+\begin{enumerate}[(a)]
+  \item
+    \begin{align*}
+      L &= a^+c^+\\
+      i(L) &= 2
+    \end{align*}
+    Für $i = 1$ ist $x=a, y=ac, z=c \in L$ aber $xy^{i+1}z = a\cdot acac\cdot c$ nicht.
+  \item
+    \begin{align*}
+      L &= (abc)^*\\
+      i(L) &= 2
+    \end{align*}
+  \item
+    \begin{align*}
+    L &= \left\{ w : |w|_a \leq 3\right\}\\
+    i(L) &= 4
+    \end{align*}
+  \item
+    \begin{align*}
+    L &= \left\{ w : |w|_{aba} = 2\right\}\\
+    i(L) &= 3
+    \end{align*}
+\end{enumerate}
+
+\subsection{H 6-3: \textsl{Aperiodizität syntaktischer Monoide}}
+
+\begin{align*}
+  A &= \left\{a,b,c\right\}\\
+  L &= a^+c^+\\
+  [a] &= \{a\}\\
+  [c] &= \{c\}\\
+  [ac] &= \left\{a(ac^m)c\;|\;m \geq 2\right\}\\
+  [b] &= A^*caA^* \cup A^*bA^* \cup a^+ \cup c^+
+\end{align*}
+
+Nach Def. 3-2 (b) ab $i(L) = 2$ aperiodisch, siehe H 6-2.
+
+%Das syntaktische Monoid $M/_{\~{}L}$ besteht aus den oben genannten Äquivalenzklassen.
+
+% \begin{enumerate}[(a)]
+%   \item $L = a^+c^+$
+%   \item $L = (abc)^*$
+%     \begin{minipage}[t]{0.3\textwidth}
+%       \begin{align*}
+%         [a] &= (abc)^*a\\
+%         [b] &= b(cab)^*\\
+%         [c] &= c(abc)^*\\
+%       \end{align*}
+%     \end{minipage}
+%     \begin{minipage}[t]{0.3\textwidth}
+%       \begin{align*}
+%       [ab] &= ab(cab)^*\\
+%       [ac] &= a(bca)^*c\\
+%       [ba] &= b(abc)^*a\\
+%       [bc] &= b(cab)^*c\\
+%       [ca] &= c(abc)^*a\\
+%       [cb] &= c(abca)^*b
+%       \end{align*}
+%     \end{minipage}
+%     \begin{minipage}[t]{0.3\textwidth}
+%       \begin{align*}
+%       [abc] &= (abc)^*\\
+%       [bca] &= (bca)^*\\
+%       [cab] &= (cab)^*
+%       \end{align*}
+%     \end{minipage}
+%   \item $L = \left\{ w : |w|_a \leq 3\right\}$
+%   \item $L = \left\{ w : |w|_{aba} = 2\right\}$
+% \end{enumerate}
+
+\end{document}

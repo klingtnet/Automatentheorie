@@ -1,0 +1,82 @@
+\documentclass{scrartcl}
+\addtokomafont{disposition}{\rmfamily}
+
+\usepackage{scrpage2}
+\usepackage{xltxtra}
+\usepackage{polyglossia}
+\usepackage{lastpage}
+\usepackage{amsmath, amssymb}
+\usepackage{stmaryrd}
+\usepackage{caption}
+\usepackage{csquotes}
+\usepackage{tikz}
+\usepackage{fontspec}
+\usepackage{enumerate}
+\usepackage{mathtools} % coloneqq
+% \setmainfont{Linux Libertine O}
+\usetikzlibrary{arrows,automata, graphs}
+\usetikzlibrary{trees}
+
+\setmainlanguage{german}
+
+\setlength{\parskip}{\baselineskip}
+\setlength{\parindent}{0pt}
+
+\pagestyle{scrheadings}
+\clearscrheadfoot
+\ihead[]{Andreas Linz, Lucas Stadler}
+\chead[]{\textsc{Automatentheorie}}
+\ohead[]{\today}
+\cfoot[\pagemark]{\textnormal{\pagemark{} / \pageref{LastPage}}}
+\setheadsepline{1pt}
+
+\begin{document}
+
+\section{Übung 08}
+
+\subsection{H 8-1}
+
+\textsl{Konstruieren eines MSO-Satzes nach Theorem 4.4 für den gegebenen Automaten.}
+
+\begin{align*}
+L = \exists Y_0, Y_1, Y_2 : &\bigwedge_{i+j} \lnot \exists y : \left( y \in Y_i \land y \in Y_j \right)\\
+    &\land \forall x \forall y : y = x + 1 \rightarrow \Big((x \in  Y_0 \land P_a(y) \land y \in Y_1)\\
+        &\qquad \land (x \in Y_0 \land P_b(y) \land y \in Y_1)\\
+        &\qquad \land (x \in Y_1 \land P_a(y) \land y \in Y_0)\\
+        &\qquad \land (x \in Y_1 \land P_b(y) \land y \in Y_2) \Big)\\
+    &\land \exists x \forall y : \Big( x \leq y \land \big( P_a(x) \land x \in Y_1 \big) \lor \big(P_b(x) \land x \in  Y_1 \big) \Big)\\
+    &\land \exists z \forall y : \big(\;y \leq z \land z \in Y_2 \;\big)
+\end{align*}
+
+Basierend auf dem Beweis für Wörter gerader Länge, da alle Wörter aus $L$ auch gerade Länge haben und zusätzlich noch ein $b$ an letzter Position.
+
+\begin{align*}
+\exists X \exists Y &: X \cup Y = \varnothing \land \forall z \big( z \in X \lor z \in Y \big)\\
+    &\land \exists u \exists v \Big( (u \in X ) \land ( v \in Y ) \land \forall z : u \leq z \leq v\\
+    &\qquad \land P_b(v) \land \big( \forall y \in Y : y \neq v \rightarrow P_a(y) \big) \Big)\\
+    &\land \forall x \forall y  : \big( y = x + 1 \big) \rightarrow \big( x \in X \leftrightarrow y \in Y \big)
+\end{align*}
+
+\subsection{H 8-2}
+
+$\psi : \big[ A \rightarrow [ B \rightarrow C ] \big]  \longrightarrow \big[ ( A \times B ) \rightarrow C \big]$
+
+$f \mapsto \overline{f} : A \times B \rightarrow C $,\quad$\overline{f}(a, b) \coloneqq f(a)(b)$
+
+\textsl{Zeigen Sie das $\psi$ bijektiv ist!}
+
+\subsection{H 8-3}
+
+\textsl{Für wieviele Wörter $v \in \big(A_\mathcal{V}\big)^5$ gibt es eine Belegung $\sigma$ so dass $v$ zu $(acacb, \sigma)$ korrespondiert?}
+
+\begin{align*}
+A &= \big\{ a,b,c \big\}\\
+\mathcal{V} &= \big\{ x, y, X \big\}\\
+x,y &\in V_{xy} = \left\{\begin{pmatrix}1\\0\\0\\0\\0\end{pmatrix}, \begin{pmatrix}0\\1\\0\\0\\0\end{pmatrix}, \ldots, \begin{pmatrix}0\\0\\0\\0\\1\end{pmatrix} \right\}\\
+X &\in \mathcal{P}(X),\quad\text{card}(\mathcal{P}(X)) = 2^{\text{card}(X)}
+\end{align*}
+
+Deshalb gibt es für $\text{card}(V_{xy})^2 * \text{card}(\mathcal{P}(X)) = 5^2 * 2^5 = 800$
+Wörter $v$ eine zu $(\text{acacb}, \sigma)$ korrespondierende Belegung.
+
+\end{document}
