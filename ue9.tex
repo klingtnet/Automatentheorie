@@ -58,15 +58,15 @@
 \newcommand{\baseset}{\mathcal{P}(\Sigma^*)}
 Es ist klar das die Regeln für $\cup$ gelten, da die Reihenfolge der Elemente in Mengen keine Rolle spielt.
 \begin{enumerate}
-    \item $\forall a, b, c \in \baseset: a \cup (b \cup c) = (a \cup b) \cup c = \{a, b, c\}$
-    \item $\forall a, b \in \baseset: a \cup b = \{a, b\} = b \cup a = \{b, a\}$
-    \item $\forall a \in \baseset: a \cup \varnothing = \varnothing \cup a = a$
+    \item $\forall A, B, C \in \baseset: A \cup (B \cup C) = (A \cup B) \cup C = \{A, B, C\}$
+    \item $\forall A, B \in \baseset: A \cup B = \{a, B\} = B \cup A = \{B, A\}$
+    \item $\forall A \in \baseset: A \cup \varnothing = \varnothing \cup A = A$
     \item \begin{align*}
-        \forall a, b, c \in \baseset&:\\
-            a \cdot (b \cup c) &= ab \cup ac \land\\
-            (b \cup c) \cdot a &= ba \cup ca
+        \forall A, B, C \in \baseset&:\\
+            A \cdot (B \cup C) &= AB \cup AC \land\\
+            (B \cup C) \cdot A &= BA \cup CA
     \end{align*}
-    \item $\forall a, b \in \baseset: a \cdot (b \cdot c) = a \cdot bc = abc = (a \cdot b) \cdot c$
+    \item $\forall A, B \in \baseset: A \cdot (B \cdot C) = A \cdot BC = ABC = (A \cdot B) \cdot C$
 \end{enumerate}
 
 \subsubsection{zu (b)}
