@@ -65,7 +65,7 @@ Es ist klar das die Regeln für $\cup$ gelten, da die Reihenfolge der Elemente i
         \forall a, b, c \in \baseset&:\\
             a \cdot (b \cup c) &= ab \cup ac \land\\
             (b \cup c) \cdot a &= ba \cup ca
-        \end{align*}
+    \end{align*}
     \item $\forall a, b \in \baseset: a \cdot (b \cdot c) = a \cdot bc = abc = (a \cdot b) \cdot c$
 \end{enumerate}
 
@@ -81,8 +81,14 @@ Es ist klar das die Regeln für $\cup$ gelten, da die Reihenfolge der Elemente i
             &= -\log\Big(e^{-\big(-\log(e^{-a} + e^{-b})\big)} + e^{-c}\Big)\\
             &= -\log\big(-\log(e^{-a} + e^{-b}) \oplus c\big)\\
             &= \big(a \oplus b\big) \oplus c
-        \end{align*}
-    \item a
+    \end{align*}
+    \item Da keine weiteren Angaben gemacht wurden wird $+$ als die herkömmliche kommutative Addition betrachet, somit gilt die Kommutativiät auch für $\oplus$:
+    \begin{align*}
+        \forall a, b \in \baseset&: a \oplus b\\
+            &= -\log\big(e^{-a} + e^{-b}\big)\\
+            &= -\log\big(e^{-b} + e^{-a}\big)\\
+            &= b \oplus a
+    \end{align*}
     \item a
     \item a
     \item a
