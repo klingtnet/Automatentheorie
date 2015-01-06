@@ -58,10 +58,11 @@
 \newcommand{\baseset}{\mathcal{P}(\Sigma^*)}
 Es ist klar das die Regeln für $\cup$ gelten, da die Reihenfolge der Elemente in Mengen keine Rolle spielt.
 \begin{enumerate}
-    \item $\forall A, B, C \in \baseset: A \cup (B \cup C) = (A \cup B) \cup C = \{A, B, C\}$
-    \item $\forall A, B \in \baseset: A \cup B = \{a, B\} = B \cup A = \{B, A\}$
+    \item $\forall A, B, C \in \baseset: A \cup (B \cup C) = (A \cup B) \cup C$,\quad{}da $\cup$ assoziativ ist.
+    \item $\forall A, B \in \baseset: A \cup B = B \cup A$,\quad{}siehe oben.
     \item $\forall A \in \baseset: A \cup \varnothing = \varnothing \cup A = A$
-    \item \begin{align*}
+    \item Konkatenation: $X \cdot Y = \{x \cdot y\;|\;x \in X, y \in Y\}$
+    \begin{align*}
         \forall A, B, C \in \baseset&:\\
             A \cdot (B \cup C) &= AB \cup AC \land\\
             (B \cup C) \cdot A &= BA \cup CA
