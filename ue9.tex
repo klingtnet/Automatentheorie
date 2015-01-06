@@ -45,12 +45,27 @@
 
 \subsubsection{Eigenschaften eines Semiringes}
 \begin{enumerate}
+    \setlength\itemsep{-1em}
     \item Addition ist assoziativ
     \item Addition ist kommutativ
     \item Einselement für Addition
     \item Links- und Rechtsdistributiv für Addition und Multiplikatin
     \item Multiplikation ist assoziativ
 \end{enumerate}
+
+\subsubsection{zu (a)}
+
+\newcommand{\baseset}{\mathcal{P}(\Sigma^*)}
+Es ist klar das die Regeln für $\cup$ gelten, da die Reihenfolge der Elemente in Mengen keine Rolle spielt.
+\begin{enumerate}
+    \item $\forall A, B, C \in \baseset: A \cup (B \cup C) = (A \cup B) \cup C = \{A, B, C\}$
+    \item $\forall A, B \in \baseset: A \cup B = \{A, B\} = B \cup A = \{B, A\}$
+    \item $\forall A \in \baseset: A \cup \varnothing = \varnothing \cup A = A$
+    \item
+    \item $\forall A, B \in \baseset: A \cdot (B \cdot C) = A \cdot BC = ABC = (A \cdot B) \cdot C$
+\end{enumerate}
+
+\subsubsection{zu (b)}
 
 \subsection{H 9-2}
 
