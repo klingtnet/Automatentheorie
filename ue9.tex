@@ -167,4 +167,37 @@ Im Folgenden ist $A^* = \varnothing^c$ ein sternfreier Ausdruck, entsprechend de
 
 \textsl{Bestimmen Sie die Verhalten des folgenden gewichteten Automaten über dem \emph{Semiring der rationalen Zahlen}. Geben Sie einen exakten Nachweis des bestimmten Verhaltens an!}
 
+Die Sprache des Automaten ist $A^*$. Das Verhalten des Automaten wird durch $\frac{1}{2^n}$ beschrieben, wobei $n$ die Anzahl der $a$ nach denen kein $b$ mehr vorkommt ist.
+
+In der folgenden Tabelle sind die Werte von $||A||$ für einige Wörter $w \in L(\mathcal{A})$ angegeben.
+
+\begin{figure}[h]
+  \centering
+  \begin{tabular}{r|c|l}
+    $w$   & $||A||(w)$ & \\
+    \hline
+
+    $a$    & $\frac{1}{2}$ \\
+    $aa$   & $\frac{1}{4}$ \\
+    $aaa$  & $\frac{1}{8}$ \\
+    $ab$   & $1$           & $\frac{1}{2} + \frac{1}{2}$ \\
+    $aab$  & $1$           & $\frac{1}{4} + \frac{1}{4} + \frac{1}{2}$ \\
+    $aaab$ & $1$           & $\frac{1}{8} + \frac{1}{8} + \frac{1}{4} + \frac{1}{2}$ \\
+  \end{tabular}
+\end{figure}
+
+Für Wörter der Form $a^n$ ist der Wert $\frac{1}{2^n}$ da es nur einen möglichen Pfad gibt, wobei die Transition jeweils mit $\frac{1}{2}$ gewichtet ist.
+
+Für Wörter der Form $a^nb$ ist der Wert $1$. Für Wörter dieser Form gibt es $n+1$ Pfade im Automaten: Pfade die in $q_1$ bleiben, Pfade erst in $q_1$ bleiben und dann in $q_2$ übergehen und Pfade die sofort in $q_2$ übergehen. Die Summe der Werte aller möglichen Pfade ergibt 1:
+
+%Der Wert für Pfade die sofort nach $q_2$ übergehen und nur mit der letzten Transition in $q_1$ übergehen ist $\frac{1}{2}$. Der Wert für Pfade die in $q_1$ bleiben beträgt $\frac{1}{2^n}$, wobei $n$ die Anzahl der Transitionen mit dem Buchstaben $a$ ist. Für Pfade die erst später nach $q_2$ übergehen, beträgt der Wert $\frac{1}{2^{m+1}}$, wobei $m$ die Anzahl der $a$ Transitionen in $q_1$ ist.
+
+\begin{equation*}
+  ||A||(a^nb) = \underbrace{\frac{1}{2^n}}_{\text{nur } q_1} + \underbrace{\frac{1}{2^n}}_{\text{n-te Transition nach } q_2} + \underbrace{\frac{1}{2^{n-1}}}_{\text{n-1-te Transition nach} q_2} + \ldots + \underbrace{\frac{1}{2^1}}_{\text{nur } q_2} = 1
+\end{equation*}
+
+Für Wörter der Form $b^*$ beträgt der Wert 1.
+
+Mit den oben beschriebenen 3 Teilwörtern lassen sich alle Wörter in $A^*$ abbilden und demnach auch bewerten. Da Wörtern der Form $a^nb$ und $b^*$ den Wert 1 haben und die Anzahl an Buchstaben $a$ nach denen kein $b$ mehr vorkommt in ihnen jeweils 0 ist und $\frac{1}{2^0} = 1$, wird das Verhalten des Automaten wie oben beschrieben durch $\frac{1}{2^n}$ bestimmt.
+
 \end{document}
