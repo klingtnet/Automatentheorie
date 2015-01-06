@@ -82,16 +82,30 @@ Es ist klar das die Regeln für $\cup$ gelten, da die Reihenfolge der Elemente i
             &= -\log\big(-\log(e^{-a} + e^{-b}) \oplus c\big)\\
             &= \big(a \oplus b\big) \oplus c
     \end{align*}
-    \item Da keine weiteren Angaben gemacht wurden wird $+$ als die herkömmliche kommutative Addition betrachet, somit gilt die Kommutativiät auch für $\oplus$:
+    \item Da keine weiteren Angaben gemacht wurden wird $+$ als die herkömmliche kommutative Addition angenommen, somit gilt die Kommutativiät auch für $\oplus$:
     \begin{align*}
         \forall a, b \in \baseset&: a \oplus b\\
             &= -\log\big(e^{-a} + e^{-b}\big)\\
             &= -\log\big(e^{-b} + e^{-a}\big)\\
             &= b \oplus a
     \end{align*}
-    \item a
-    \item a
-    \item a
+    \item \begin{align*}
+        \forall a \in \baseset&: a \oplus \infty\\
+            &= -\log\big(e^{-a} + \underbrace{e^{-\infty}}_{= 0}\big)\\
+            &= -\log\big(e^{-a} + 0\big) = -\log\big(e^{-a}\big)\\
+            &= -\log\big(\underbrace{e^{-\infty}}_{= 0} + e^{-a}\big)\\
+            &= \infty \oplus a\\
+    \end{align*}
+    \item \begin{align*}
+        \forall a, b, c \in \baseset&: a + (b \oplus c)\\
+            &= a -\log\big(e^{-b} + e^{-c}\big)\\
+            &\ldots
+            &= -\log\Big(e^{-(a+b)} + e^{-(a+c)}\Big)\\
+            &= -\log\Big(e^{-a}e^{-b} + e^{-a}e^{-c}\Big)\\
+            &= (a + b) \oplus (a + c)\\
+            \land\quad& (b \oplus c) + a = (b + a) \oplus (c + a)
+    \end{align*}
+    \item Es ist klar das $+$ assoziativ für $\baseset$ ist.
 \end{enumerate}
 
 \subsection{H 9-2}
