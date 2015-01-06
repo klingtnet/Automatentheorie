@@ -72,13 +72,21 @@ Es ist klar das die Regeln für $\cup$ gelten, da die Reihenfolge der Elemente i
 \subsubsection{zu (b)}
 
 \renewcommand{\baseset}{\mathbb{R} \cup \{\infty\}}
-% \begin{enumerate}
-%     \item a
-%     \item a
-%     \item a
-%     \item a
-%     \item a
-% \end{enumerate}
+\begin{enumerate}
+    \item \begin{align*}
+        \forall a, b, c \in \baseset&: a \oplus (b \oplus c)\\
+            &= a \oplus \big(-\log(e^{-b} + e^{-c})\big)\\
+            &= -\log\Big(e^{-a} + e^{-\big(-\log(e^{-b} + e^{-c})\big)}\Big)\\
+            &= -\log\Big(e^{-a} + e^{-b} + e^{-c}\Big)\\
+            &= -\log\Big(e^{-\big(-\log(e^{-a} + e^{-b})\big)} + e^{-c}\Big)\\
+            &= -\log\big(-\log(e^{-a} + e^{-b}) \oplus c\big)\\
+            &= \big(a \oplus b\big) \oplus c
+        \end{align*}
+    \item a
+    \item a
+    \item a
+    \item a
+\end{enumerate}
 
 \subsection{H 9-2}
 
