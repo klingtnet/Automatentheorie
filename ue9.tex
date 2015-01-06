@@ -84,12 +84,44 @@ Es ist klar das die Regeln für $\cup$ gelten, da die Reihenfolge der Elemente i
 
 \textsl{Geben Sie \emph{sternfreie rationale Ausdrücke} für die Sprachen an, die durch folgende First-Order Sätze beschrieben sind!}
 
-$\Sigma = \big\{a,b,c\big\}$
+$A = \big\{a,b,c\big\}$
+
+Im Folgenden ist $A^* = \varnothing^c$ ein sternfreier Ausdruck, entsprechend der Definition in der Vorlesung.
 
 \begin{enumerate}[(a)]
     \item $\forall x \forall y\Big[\big(P_b(x) \land (x < y) \land P_b(y)\big) \rightarrow \big(\forall z (x < y < z) \rightarrow \lnot P_c(z)\big)\Big]$
+
+      Intuitiv kann man die Sprache als \enquote{zwischen zwei $b$ kommt kein $c$ vor} beschreiben.
+
+      Ein sternfreier Ausdruck für die Sprache ist $A^* \setminus (A^* b A^* c A^* b A^*)$.
+
     \item $\forall x \exists y \Big( P_a(x) \rightarrow y = x+1 \land P_a(y)\Big)$
+
+      Die Sprache kann als \enquote{nach einem $a$ muss direkt darauf folgend noch ein $a$ vorkommen} beschrieben werden. Allerdings würde dies zur Folge haben dass Wörter in denen ein $a$ vorkommt unendliche Länge haben da nach jedem $a$ noch ein $a$ vorkommen müsste.
+
+      Da in der Vorlesung bisher keine unendlichen Wörter eingeführt wurden darf in den Wörtern der Sprache demnach kein $a$ vorkommen.
+
+      Ein sternfreier Ausdruck für die Sprache ist deshalb $A^* \setminus (A^* a A^*)$.
     \item $\forall x \forall y \Big[ y = x+1 \rightarrow \big(P_a(x) \leftrightarrow P_b(y)\big)\Big]$
+
+      Wenn in Wörtern der Sprache ein $a$ vorkommt und es eine direkte Nachfolgeposition gibt, so muss dort ein $b$ stehen. Umgekehrt muss wenn ein $b$ vorkommt und eine direkte Vorgängerposition gibt dort ein $a$ stehen. D.h. $a$ und $b$ kommen in $ab$-Paaren vor, wobei es einige Ausnahmen für den Anfang und das Ende von Wörtern der Sprache gibt.
+
+      Zum Beispiel sind $b$, $bc$, $bcb$, $ab$ und $bccaba$ Wörter der Sprache.
+
+      Ein (nicht sternfreier) Ausdruck für die Sprache ist $\{b, \epsilon\} \cdot \{ab,c\}^* \cdot \{\epsilon, a\}$.
+
+      Ein sternfreier Ausdruck für die Sprache kann in Anlehnung zu dem sternfreien Ausdruck für $\{ab\}^*$ aus der Vorlesung konstruiert werden:
+
+      \begin{equation*}
+        \{b, \epsilon\} \cdot (\{a,b\}^* \cup \{c\}^*) \cdot \{\epsilon, a\}
+      \end{equation*}
+
+      Wobei zusätzlich die folgenden Abkürzungen verwendet werden:
+
+      \begin{align*}
+        \{a,b\}^* &= \{\epsilon\} \cup (aA^* \cap A^*b) \setminus A^* \cdot \{a^2, b^2, c\} \cdot A^*\\
+        \{c\}^* &= A^* \setminus (A^* \cdot \{a, b\} A^*)
+      \end{align*}
 \end{enumerate}
 
 \subsection{H 9-3}
