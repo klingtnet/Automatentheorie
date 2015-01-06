@@ -100,13 +100,23 @@ Es ist klar das die Regeln für $\cup$ gelten, da die Reihenfolge der Elemente i
     \item \begin{align*}
         \forall a, b, c \in \baseset&: a + (b \oplus c)\\
             &= a -\log\big(e^{-b} + e^{-c}\big)\\
-            &\ldots\\
-            &= -\log\Big(e^{-(a+b)} + e^{-(a+c)}\Big)\\
+            &= (a \oplus \infty) -\log\big(e^{-b} + e^{-c}\big)\\
+            &= -\log(e^{-a}) -\log\big(e^{-b} + e^{-c}\big)\\
+            &= -\log\Big(e^{-a}\big(e^{-b} + e^{-c}\big)\Big)\\
             &= -\log\Big(e^{-a}e^{-b} + e^{-a}e^{-c}\Big)\\
+            &= -\log\Big(e^{-(a+b)} + e^{-(a+c)}\Big)\\
             &= (a + b) \oplus (a + c)\\
-            \land\quad& (b \oplus c) + a = (b + a) \oplus (c + a)
+            &\text{Rechtsdistributivität vice versa \ldots}\\
+            \land\quad& (b \oplus c) + a\\
+            &= -\log\big(e^{-b} + e^{-c}\big) + a\\
+            &= -\log\big(e^{-b} + e^{-c}\big) + (a \oplus \infty)\\
+            &= -\log\big(e^{-b} + e^{-c}\big) -\log\big(e^{-a}\big)\\
+            &= -\log\Big(\big(e^{-b} + e^{-c}\big)e^{-a}\Big)\\
+            &= -\log\Big(e^{-b-a} + e^{-c-a}\Big)\\
+            &= -\log\Big(e^{-(b+a)} + e^{-(c+a)}\Big)\\
+            &= (b + a) \oplus (c + a)
     \end{align*}
-    \item Es ist klar das $+$ assoziativ für $\baseset$ ist.
+    \item Es ist klar das $+$ assoziativ in der Menge $\baseset$ ist.
 \end{enumerate}
 
 \subsection{H 9-2}
