@@ -42,8 +42,9 @@ Nach \emph{Theorem 5.6} hat $s$ eine Repräsentation $s(w) = \lambda\cdot\mu(w)\
 
 \begin{align*}
     t(w) &=  \lambda\cdot\mu'(w)\cdot\gamma\\
-    \mu'(w) &= \begin{cases} \mu(v)\quad\text{falls}\; w = u\#v \land v \in A^*\\
-        \mu(w)\quad\text{sonst}
+    \mu'(w) &= \begin{cases}
+        \mu(v)  &\text{falls}\; w = u\#v \land v \in A^*\\
+        \mu(w)  &\text{sonst}
     \end{cases}
 \end{align*}
 
@@ -52,6 +53,19 @@ Da $t$ die Repräsentation $(\lambda, \mu', \gamma)$ hat, ist $t$ ebenfalls nach
 \subsection{H 10-2}
 
 \textsl{Sei $A = \{a,b,c\}$. Geben Sie gewichtete Automaten an, welche die folgenden Funktionen $s: A^* \rightarrow S$ über dem angegebenen Semiringen $S$ erkennen.}
+
+\begin{enumerate}[(a)]
+    \item $S = (\mathbb{Z}, +, \cdot, 0, 1)$, mit $s(w) = 2|w|_a -3|w|_b + 4|w|_c$
+
+    \item $S = (\mathcal{P}(A^*), \cup, \cdot, \varnothing, \{\varepsilon\})$ mit
+    \begin{equation*}
+        s(w) = \begin{cases}
+            \{a^n\}     &\text{falls}\;w = a^nbv\;\text{mit}\;v \in A^*\\
+            \{a^2n\}    &\text{falls}\;w=a^ncv\;\text{mit}\;v \in A^*\\
+            \varnothing &\text{sonst}
+        \end{cases}
+    \end{equation*}
+\end{enumerate}
 
 \subsection{H 10-3}
 
