@@ -1,0 +1,60 @@
+\documentclass{scrartcl}
+\addtokomafont{disposition}{\rmfamily}
+
+\usepackage{scrpage2}
+\usepackage{xltxtra}
+\usepackage{polyglossia}
+\usepackage{lastpage}
+\usepackage{amsmath, amssymb}
+\usepackage{stmaryrd}
+\usepackage{caption}
+\usepackage{csquotes}
+\usepackage{tikz}
+\usepackage{fontspec}
+\usepackage{enumerate}
+\usepackage{mathtools} % coloneqq
+% \setmainfont{Linux Libertine O}
+\usetikzlibrary{arrows,automata, graphs}
+\usetikzlibrary{trees}
+
+\setmainlanguage{german}
+
+\setlength{\parskip}{\baselineskip}
+\setlength{\parindent}{0pt}
+
+\pagestyle{scrheadings}
+\clearscrheadfoot
+\ihead[]{Andreas Linz, Lucas Stadler}
+\chead[]{\textsc{Automatentheorie}}
+\ohead[]{\today}
+\cfoot[\pagemark]{\textnormal{\pagemark{} / \pageref{LastPage}}}
+\setheadsepline{1pt}
+
+\begin{document}
+
+\section{Übung 10}
+
+\subsection{H 10-1}
+
+\textsl{Sei $A$ ein Alphabet, $S$ ein bel. Semiring und $s: A^* \rightarrow S$ eine erkennbare Funktion. Weiterhin sei $\# \in A$ ein neues Zeichen und die Funktion $t: (A \cup \{\#\})^* \rightarrow S$ definiert \ldots}
+
+Nach \emph{Theorem 5.6} hat $s$ eine Repräsentation $s(w) = \lambda\cdot\mu(w)\cdot\gamma$. Damit kann eine Repräsentation für t erzeugt werden:
+
+\begin{align*}
+    t(w) &=  \lambda\cdot\mu'(w)\cdot\gamma\\
+    \mu'(w) &= \begin{cases} \mu(v)\quad\text{falls}\; w = u\#v \land v \in A^*\\
+        \mu(w)\quad\text{sonst}
+    \end{cases}
+\end{align*}
+
+Da $t$ die Repräsentation $(\lambda, \mu', \gamma)$ hat, ist $t$ ebenfalls nach \emph{Theorem 5.6} erkennbar.
+
+\subsection{H 10-2}
+
+\textsl{Sei $A = \{a,b,c\}$. Geben Sie gewichtete Automaten an, welche die folgenden Funktionen $s: A^* \rightarrow S$ über dem angegebenen Semiringen $S$ erkennen.}
+
+\subsection{H 10-3}
+
+\textsl{Sei $S$ ein kommutativer Semiring und $s: A^* \rightarrow S$ eine erkennbare Funktion. Für ein Wort $w = w_1 \ldots w_n \in A^*$ definieren wir $\tilde{w} = w_n \ldots w_1$. Zeigen Sie, dass die Funktion $\tilde{s} : A^* \rightarrow S$ mit $\tilde{s}(w) = s(\tilde{w})$ wieder erkennbar ist.}
+
+\end{document}
