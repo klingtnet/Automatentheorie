@@ -135,9 +135,12 @@ Da $t$ die Repräsentation $(\lambda, \mu', \gamma)$ hat, ist $t$ ebenfalls nach
 \textsl{Sei $S$ ein kommutativer Semiring und $s: A^* \rightarrow S$ eine erkennbare Funktion. Für ein Wort $w = w_1 \ldots w_n \in A^*$ definieren wir $\tilde{w} = w_n \ldots w_1$. Zeigen Sie, dass die Funktion $\tilde{s} : A^* \rightarrow S$ mit $\tilde{s}(w) = s(\tilde{w})$ wieder erkennbar ist.}
 
 \begin{align*}
-    s(\tilde{w}) &= (\lambda \cdot \mu(w) \cdot \gamma)^T\\
+    s(\tilde{w}) &= \lambda \cdot \mu(\tilde{w}) \cdot \gamma\\
+                 &= (\lambda \cdot \mu(w) \cdot \gamma)^T\\
                  &= \gamma^T \cdot (\lambda \cdot \mu(w))^T\\
                  &= \underbrace{\gamma^T \vphantom{\mu(w)^T}}_{1 \times n} \cdot \underbrace{\mu(w)^T}_{n \times n} \cdot \underbrace{\lambda^T \vphantom{\mu(w)^T}}_{n \times 1}\\
 \end{align*}
+
+Beweise dass $\mu(\tilde{w}) = \mu(w)^T$.
 
 \end{document}
