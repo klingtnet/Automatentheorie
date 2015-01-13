@@ -135,12 +135,18 @@ Da $t$ die Repräsentation $(\lambda, \mu', \gamma)$ hat, ist $t$ ebenfalls nach
 \textsl{Sei $S$ ein kommutativer Semiring und $s: A^* \rightarrow S$ eine erkennbare Funktion. Für ein Wort $w = w_1 \ldots w_n \in A^*$ definieren wir $\tilde{w} = w_n \ldots w_1$. Zeigen Sie, dass die Funktion $\tilde{s} : A^* \rightarrow S$ mit $\tilde{s}(w) = s(\tilde{w})$ wieder erkennbar ist.}
 
 \begin{align*}
-    s(\tilde{w}) &= \lambda \cdot \mu(\tilde{w}) \cdot \gamma\\
+    \tilde{s}(w) = s(\tilde{w}) &= \lambda \cdot \mu(\tilde{w}) \cdot \gamma\\
                  &= (\lambda \cdot \mu(w) \cdot \gamma)^T\\
                  &= \gamma^T \cdot (\lambda \cdot \mu(w))^T\\
                  &= \underbrace{\gamma^T \vphantom{\mu(w)^T}}_{1 \times n} \cdot \underbrace{\mu(w)^T}_{n \times n} \cdot \underbrace{\lambda^T \vphantom{\mu(w)^T}}_{n \times 1}\\
 \end{align*}
 
-Beweise dass $\mu(\tilde{w}) = \mu(w)^T$.
+$\mu(\tilde{w}) = \mu(w)^T$:
+\begin{align*}
+    \mu(a)_{ij} &= wt(i, a, j)\\
+    \mu(a)_{ij}^T &= \mu(a)_{ji} = wt(j, a, i)
+\end{align*}
+
+Durch $\mu(a)_{ij}$ wird das Gewicht des Pfades $i\stackrel{a}{\rightarrow}j$ bestimmt. Das heisst $\mu(a)^T$ liefert das Gewicht für den umgekehrten Pfad $j\stackrel{a}{\rightarrow}i$. Somit ist nach \emph{Theorem 5.6} $\tilde{s}(w)$ wieder erkennbar.
 
 \end{document}
