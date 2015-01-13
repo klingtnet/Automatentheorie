@@ -59,15 +59,15 @@ Da $t$ die Repräsentation $(\lambda, \mu', \gamma)$ hat, ist $t$ ebenfalls nach
 
       \begin{figure}[ht]
         \centering
-        \begin{tikzpicture}[node distance=2cm, auto, >=stealth]
+        \begin{tikzpicture}[node distance=2.25cm, auto, >=stealth]
           \node[initial by arrow, state, initial text={}] (q_0) {$q_0$};
           \node[state, accepting by arrow] (q_2) [right of=q_0] {$q_2$};
           \node[state, accepting by arrow] (q_1) [right of=q_0, above of=q_0] {$q_1$};
           \node[state, accepting by arrow] (q_3) [right of=q_0, below of=q_0] {$q_3$};
 
-          \path[->] (q_0) edge node [above, near start] {$a/_2$}  (q_1);
+          \path[->] (q_0) edge node [above, near start, yshift=2.5mm] {$a/_2$}  (q_1);
           \path[->] (q_0) edge node {$b/_{-3}$} (q_2);
-          \path[->] (q_0) edge node [below, near start] {$c/_4$}  (q_3);
+          \path[->] (q_0) edge node [below, near start, yshift=-2.5mm] {$c/_4$}  (q_3);
 
           \path[->] (q_0) edge [loop above] node [left] {$*/_1$} (q_0);
           \path[->] (q_1) edge [loop above] node [left] {$*/_1$} (q_1);
@@ -77,13 +77,36 @@ Da $t$ die Repräsentation $(\lambda, \mu', \gamma)$ hat, ist $t$ ebenfalls nach
       \end{figure}
 
     \item $S = (\mathcal{P}(A^*), \cup, \cdot, \varnothing, \{\varepsilon\})$ mit
-    \begin{equation*}
+      \begin{equation*}
         s(w) = \begin{cases}
-            \{a^n\}     &\text{falls}\;w = a^nbv\;\text{mit}\;v \in A^*\\
-            \{a^2n\}    &\text{falls}\;w=a^ncv\;\text{mit}\;v \in A^*\\
-            \varnothing &\text{sonst}
+          \{a^n\}     &\text{falls}\;w = a^nbv\;\text{mit}\;v \in A^*\\
+          \{a^2n\}    &\text{falls}\;w=a^ncv\;\text{mit}\;v \in A^*\\
+          \varnothing &\text{sonst}
         \end{cases}
-    \end{equation*}
+      \end{equation*}
+
+      \begin{figure}[ht]
+        \centering
+        \begin{tikzpicture}[node distance=1.75cm, auto, >=stealth]
+          \node[initial by arrow, state, initial text={}] (q_0) {$q_0$};
+
+          \node[state] (q_1) [right of=q_0, above of=q_0]{$q_1$};
+          \node[state, accepting by arrow] (q_3) [right of=q_1] {$q_3$};
+
+          \node[state] (q_2) [right of=q_0, below of=q_0]{$q_2$};
+          \node[state, accepting by arrow] (q_4) [right of=q_2] {$q_4$};
+
+          \path[->] (q_0) edge node {$a/_{\{a\}}$} (q_1);
+          \path[->] (q_1) edge [loop above] node {$a/_{\{a\}}$} (q_1);
+          \path[->] (q_1) edge node {$b/_{\{\epsilon\}}$} (q_3);
+          \path[->] (q_3) edge [loop above] node {$*/_{\{\epsilon\}}$} (q_3);
+
+          \path[->] (q_0) edge node [below, xshift=-5mm] {$a/_{\{aa\}}$} (q_2);
+          \path[->] (q_2) edge [loop above] node {$a/_{\{aa\}}$} (q_2);
+          \path[->] (q_2) edge node {$c/_{\{\epsilon\}}$} (q_4);
+          \path[->] (q_4) edge [loop above] node {$*/_{\{\epsilon\}}$} (q_4);
+        \end{tikzpicture}
+      \end{figure}
 \end{enumerate}
 
 \subsection{H 10-3}
