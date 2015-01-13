@@ -84,6 +84,29 @@ Da $t$ die Repräsentation $(\lambda, \mu', \gamma)$ hat, ist $t$ ebenfalls nach
           \varnothing &\text{sonst}
         \end{cases}
       \end{equation*}
+
+      \begin{figure}[ht]
+        \centering
+        \begin{tikzpicture}[node distance=1.75cm, auto, >=stealth]
+          \node[initial by arrow, state, initial text={}] (q_0) {$q_0$};
+
+          \node[state] (q_1) [right of=q_0, above of=q_0]{$q_1$};
+          \node[state, accepting by arrow] (q_3) [right of=q_1] {$q_3$};
+
+          \node[state] (q_2) [right of=q_0, below of=q_0]{$q_2$};
+          \node[state, accepting by arrow] (q_4) [right of=q_2] {$q_4$};
+
+          \path[->] (q_0) edge node {$a/_{\{a\}}$} (q_1);
+          \path[->] (q_1) edge [loop above] node {$a/_{\{a\}}$} (q_1);
+          \path[->] (q_1) edge node {$b/_{\{\epsilon\}}$} (q_3);
+          \path[->] (q_3) edge [loop above] node {$*/_{\{\epsilon\}}$} (q_3);
+
+          \path[->] (q_0) edge node [below, xshift=-5mm] {$a/_{\{aa\}}$} (q_2);
+          \path[->] (q_2) edge [loop above] node {$a/_{\{aa\}}$} (q_2);
+          \path[->] (q_2) edge node {$c/_{\{\epsilon\}}$} (q_4);
+          \path[->] (q_4) edge [loop above] node {$*/_{\{\epsilon\}}$} (q_4);
+        \end{tikzpicture}
+      \end{figure}
 \end{enumerate}
 
 \subsection{H 10-3}
