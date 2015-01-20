@@ -38,6 +38,44 @@
 
 \begin{enumerate}[(a)]
     \item $S = (\mathbb{N}, +, \cdot, 0, 1)$
+
+      \begin{align*}
+        (1_S ab, w) &= (1_S a + 1_S b, w) = (1_S a, w) + (1_S b, w)\\
+          &= \begin{cases}
+            1_S, &\text{wenn } w = a \text{ oder } w = b\\
+            0,   &\text{sonst}
+          \end{cases}
+          \\
+        \\
+        ((1_S ab)^n, w) &=
+          \sum_{w = u_1 \cdots u_n} (1_S ab, u_1) \cdots (1_S ab, u_n)\\
+          &= (1_S ab, u_1) \cdots (1_S ab, u_n) \text{ mit } u_1, \ldots, u_n \in A\\
+          &= \begin{cases}
+            1, &\text{wenn } |w| = n\\
+            0, &\text{sonst}
+          \end{cases}
+          \\
+        \\
+        ((1_S ab)^*, w) &= \sum_{n \geq 0} ((1_S ab)^n, w)\\
+          &= \underbrace{\sum_{0 < n < |w|} ((1_S ab)^n, w)}_{0}
+            + ((1_S ab)^{|w|}, w)
+            + \underbrace{\sum_{n > |w|} ((1_S ab)^n, w)}_{0}\\
+          &= ((1_S ab)^{|w|}, w)\\
+          &= (1w, w)\\
+        \\
+        (((1_S ab)^*)^2, w) &= \sum_{w = uv} ((1_S ab)^*, u) \cdot ((1_S ab)^*, v)\\
+          &= |\{w = uv\}|\\
+        \\
+        (((1_S ab)^2)^n, w) &= \sum_{w = u_1 \cdots u_n} ((1_S ab)^2, u_1) \cdots ((1_s ab)^2, u_n)\\
+          &= \begin{cases}
+            1, &\text{wenn } |w| \bmod 2 = 0\\
+            0, &\text{sonst}
+          \end{cases}
+          \\
+        %\\
+        %(((1_S ab)^2)^*, w) &= \sum_{n \geq 0} ((1_S ab)^2)^n\\
+      \end{align*}
+
     \item $S = (\mathbb{Z} \cup \{-\infty\}, \text{max}, +, -\infty, 0)$
 \end{enumerate}
 
