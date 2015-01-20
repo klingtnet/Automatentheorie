@@ -65,18 +65,45 @@
         \\
         (((1_S ab)^*)^2, w) &= \sum_{w = uv} ((1_S ab)^*, u) \cdot ((1_S ab)^*, v)\\
           &= |\{w = uv\}|\\
-        \\
+        \displaybreak\\
         (((1_S ab)^2)^n, w) &= \sum_{w = u_1 \cdots u_n} ((1_S ab)^2, u_1) \cdots ((1_s ab)^2, u_n)\\
           &= \begin{cases}
             1, &\text{wenn } |w| \bmod 2 = 0\\
             0, &\text{sonst}
           \end{cases}
           \\
-        %\\
-        %(((1_S ab)^2)^*, w) &= \sum_{n \geq 0} ((1_S ab)^2)^n\\
       \end{align*}
 
     \item $S = (\mathbb{Z} \cup \{-\infty\}, \text{max}, +, -\infty, 0)$
+    \begin{align*}
+    (0\,ab, w) &=
+      \big(\max(0\,a, 0\,b), w\big) = \max\big((0\,a, w), (0\,b, w)\big)\\
+      &=\begin{cases}
+        0, &w = a \lor w = b\\
+        -\infty, &\text{sonst}
+      \end{cases}\\
+    \\
+    \big((0\,ab)^n, w\big)
+      &=\max\big(\overbrace{(0\,ab, u_1) \ldots (0\,ab, u_n)}^{w = u_1 \ldots u_n}\big)\\
+      &=\begin{cases}
+        0, &|w| = n\\
+        -\infty, &\text{sonst}
+      \end{cases}\\
+    \\
+    \big((0\,ab)^*, w\big)
+      &= \max\big(\overbrace{((0\,ab)^0, w), ((0\,ab)^1, w), \ldots{}}^{=-\infty}, ((0\,ab)^{n=|w|}, w), \overbrace{((0\,ab)^{n+1}, w), ((0\,ab)^{n+2}, w), \ldots{}}^{=-\infty}\big)\\
+      &= \big((0\,w), w\big)\\
+    \\
+    \big(((0\,ab)^*)^2, w\big)
+      &= \max_{w=uv}\Big(\big((0\, ab)^*, u\big)+\big((0\, ab)^*, v\big)\Big)\\
+      &= \begin{cases}
+        0, &w=uv \land |u|>0 \land |v|>0\\
+        -\infty\text{sonst}
+      \end{cases}
+    \\
+    \big(((0\,ab)^2)^*, w\big)
+      &= ((0\ab)^2, w) =
+    \end{align*}
 \end{enumerate}
 
 \subsection{H 11-2}
@@ -91,5 +118,14 @@
 \subsection{H 11-3}
 
 \textsl{Zeigen Sie, dass die Reihe $s \in \mathbb{N}\langle\langle A^* \rangle\rangle$, welche durch $(s, a^n) = f_n$ definiert ist, rational ist. Finden Sie außerdem einen gewichteten Automaten über $\mathbb{N}$, welcher $s$ erkennt.}
+
+\begin{align*}
+  f_n = (s, a^n) &= \begin{cases}
+    0, &n = 0\\% \lor w = \varepsilon\\
+    1, &n = 1\\% \lor w = a\\
+    (s, a^{n-1}) + (s, a^{n-2}), &\text{sonst}
+  \end{cases}
+\end{align*}
+
 
 \end{document}
