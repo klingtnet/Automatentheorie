@@ -87,7 +87,8 @@
       \end{cases}\\
     \\
     \big((0\,ab)^n, w\big)
-      &=\max\big(\overbrace{(0\,ab, u_1) \ldots (0\,ab, u_n)}^{w = u_1 \ldots u_n}\big)\\
+      %&=\max\big(\overbrace{(0\,ab, u_1) \ldots (0\,ab, u_n)}^{w = u_1 \ldots u_n}\big)\\
+      &=\max\big(\sum_{w=u_1\ldots{}u_n} (0\,ab, u_1) +\ldots+ (0\,ab, u_n)\big)\\
       &=\begin{cases}
         0, &|w| = n\\
         -\infty, &\text{sonst}
