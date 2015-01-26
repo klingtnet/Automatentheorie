@@ -1,0 +1,65 @@
+\documentclass{scrartcl}
+\addtokomafont{disposition}{\rmfamily}
+
+\usepackage{scrpage2}
+\usepackage{xltxtra}
+\usepackage{polyglossia}
+\usepackage{lastpage}
+\usepackage{amsmath, amssymb}
+\usepackage{stmaryrd}
+\usepackage{caption}
+\usepackage{csquotes}
+\usepackage{tikz}
+\usepackage{fontspec}
+\usepackage{enumerate}
+\usepackage{mathtools} % coloneqq
+% \setmainfont{Linux Libertine O}
+
+\setmainlanguage{german}
+
+\setlength{\parskip}{\baselineskip}
+\setlength{\parindent}{0pt}
+
+\pagestyle{scrheadings}
+\clearscrheadfoot
+\ihead[]{Andreas Linz, Lucas Stadler}
+\chead[]{\textsc{Automatentheorie}}
+\ohead[]{\today}
+\cfoot[\pagemark]{\textnormal{\pagemark{} / \pageref{LastPage}}}
+\setheadsepline{1pt}
+
+\begin{document}
+
+\section{Übung 12}
+
+\subsection{H 12-1}
+
+\textsl{Zeigen Sie die folgende Aussage: Sei $S$ ein kommutative Semiring und $s, t \in S^{\text{rec}}\langle\langle A^* \rangle\rangle$. Dann ist $s \varodot t$ wieder erkennbar.}
+
+\subsection{H 12-2}
+
+\textsl{Sei $A = \{a, b, c\}$. Geben Sie rationale Reiehen, d.h. aus Monomen und den Operationen $+$, $\cdot$ und ${}^*$ aufgebaut, an, welche die folgenden Reihen über den angebenen Semiringen $S$ beschreiben:}
+
+\begin{enumerate}[(a)]
+    \item $S = (\mathbb{Z}, +, \cdot, 0, 1)$, mit $s(w) = 2|w|_a -3|w|_b + 4|w|_c$
+    \item $S = (\mathcal{P}(A^*), \cup, \cdot, \varnothing, \{\varepsilon\})$ mit
+      \begin{equation*}
+        s(w) = \begin{cases}
+          \{a^n\}     &\text{falls}\;w = a^nbv\;\text{mit}\;v \in A^*\\
+          \{a^2n\}    &\text{falls}\;w=a^ncv\;\text{mit}\;v \in A^*\\
+          \varnothing &\text{sonst}
+        \end{cases}
+      \end{equation*}
+    \item $S = (\mathbb{N}, +, \cdot, 0, 1)$ mit $(s, w) = |w|^2$
+\end{enumerate}
+
+\subsection{H 12-3}
+
+\textsl{Sei $S = (\mathbb{Z}, +, \cdot, 0, 1)$ und $A = \{a\}$. Beweisen Sie die folgenden Aussagen:}
+
+\begin{enumerate}[(a)]
+    \item \textsl{Die Reihe $s \in S\langle\langle A^* \rangle\rangle$, welche durch $(s, a^n) = \{a^nba^n\}$ definiert ist, ist nicht erkennbar.}
+    \item \textsl{Die erkennbaren Reihen über $S$ sind nicht unter dem Hadamard-Produkt $\varodot$ abgeschlossen.}
+\end{enumerate}
+
+\end{document}
