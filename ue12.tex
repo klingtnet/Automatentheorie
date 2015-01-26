@@ -42,6 +42,11 @@
 
 \begin{enumerate}[(a)]
     \item $S = (\mathbb{Z}, +, \cdot, 0, 1)$, mit $s(w) = 2|w|_a -3|w|_b + 4|w|_c$
+
+      $1.a$ beschreibt $a$, mit $1 \cdot 1.a \cdot 1$ wird $|w|_a$ beschrieben.
+
+      $1 \cdot \left(2.a + \left(-3\right).b + 4.b\right) \cdot 1$ beschreibt $s$.
+
     \item $S = (\mathcal{P}(A^*), \cup, \cdot, \varnothing, \{\varepsilon\})$ mit
       \begin{equation*}
         s(w) = \begin{cases}
@@ -50,6 +55,11 @@
           \varnothing &\text{sonst}
         \end{cases}
       \end{equation*}
+
+      $(a.a)^+$ beschreibt $a^n$, $(aa.a)^+$ beschreibt $a^{2n}$.
+
+      $\left(\left(a.a\right)^+ \cdot \left(1.b\right) \cdot 1\right) \cup \left(\left(aa.a\right)^+ \cdot \left(1.b\right) \cdot 1\right)$ beschreibt s.
+
     \item $S = (\mathbb{N}, +, \cdot, 0, 1)$ mit $(s, w) = |w|^2$
 \end{enumerate}
 
@@ -59,7 +69,12 @@
 
 \begin{enumerate}[(a)]
     \item \textsl{Die Reihe $s \in S\langle\langle A^* \rangle\rangle$, welche durch $(s, a^n) = \{a^nba^n\}$ definiert ist, ist nicht erkennbar.}
+
     \item \textsl{Die erkennbaren Reihen über $S$ sind nicht unter dem Hadamard-Produkt $\varodot$ abgeschlossen.}
+
+      Sei $(s, a^n) = \{a^n\}$ und $(t, a^n) = \{ba^n\}$. Es gilt $s, t \in S^{\text{rec}}\langle\langle A^* \rangle\rangle$.
+
+      Allerdings ist $(s\,\varodot\,t, w) = (s, w) \cdot (t, w) = \{a^nba^n\}$ und damit nach (a) nicht erkennbar.
 \end{enumerate}
 
 \end{document}
