@@ -41,12 +41,19 @@
 
 \textsl{Sei $A = \{a, b, c\}$. Geben Sie rationale Reiehen, d.h. aus Monomen und den Operationen $+$, $\cdot$ und ${}^*$ aufgebaut, an, welche die folgenden Reihen über den angebenen Semiringen $S$ beschreiben:}
 
+In der nachfolgenden Aufgabe werden folgende Abkürzungen verwendet:
+
+\begin{align*}
+  \mathbbm{1} = (1.*)^*\\
+  1.* = \sum\limits_{a \in A} 1.a\\
+\end{align*}
+
 \begin{enumerate}[(a)]
     \item $S = (\mathbb{Z}, +, \cdot, 0, 1)$, mit $s(w) = 2|w|_a -3|w|_b + 4|w|_c$
 
-      $1.a$ beschreibt $a$, mit $1 \cdot 1.a \cdot 1$ wird $|w|_a$ beschrieben.
+      $1.a$ beschreibt $a$, mit $\mathbbm{1} \cdot 1.a \cdot \mathbbm{1}$ wird $|w|_a$ beschrieben.
 
-      $1 \cdot \left(2.a + \left(-3\right).b + 4.c\right) \cdot 1$ beschreibt $s$.
+      $\mathbbm{1} \cdot \left(2.a + \left(-3\right).b + 4.c\right) \cdot \mathbbm{1}$ beschreibt $s$.
 
     \item $S = (\mathcal{P}(A^*), \cup, \cdot, \varnothing, \{\varepsilon\})$ mit
       \begin{equation*}
@@ -57,9 +64,9 @@
         \end{cases}
       \end{equation*}
 
-      $(a.a)^+$ beschreibt $a^n$, $(aa.a)^+$ beschreibt $a^{2n}$.
+      $(\{a\}.a)^+$ beschreibt $a^n$, $(\{aa\}.a)^+$ beschreibt $a^{2n}$.
 
-      $\left(\left(a.a\right)^+ \cdot \left(1.b\right) \cdot 1\right) \cup \left(\left(aa.a\right)^+ \cdot \left(1.c\right) \cdot 1\right)$ beschreibt s.
+      $\left(\left(\{a\}.a\right)^+ \cdot \left(1.b\right) \cdot \mathbbm{1}\right) \cup \left(\left(\{aa\}.a\right)^+ \cdot \left(1.c\right) \cdot \mathbbm{1}\right)$ beschreibt s.
 
     \item $S = (\mathbb{N}, +, \cdot, 0, 1)$ mit $(s, w) = |w|^2$
 
