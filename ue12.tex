@@ -12,6 +12,7 @@
 \usepackage{tikz}
 \usepackage{fontspec}
 \usepackage{enumerate}
+\usepackage{bbm}
 \usepackage{mathtools} % coloneqq
 % \setmainfont{Linux Libertine O}
 
@@ -61,6 +62,15 @@
       $\left(\left(a.a\right)^+ \cdot \left(1.b\right) \cdot 1\right) \cup \left(\left(aa.a\right)^+ \cdot \left(1.c\right) \cdot 1\right)$ beschreibt s.
 
     \item $S = (\mathbb{N}, +, \cdot, 0, 1)$ mit $(s, w) = |w|^2$
+
+    $n^2$ kann als die Summe der ersten $n$ ungeraden Zahlen dargestellt werden:
+    $$
+    n^2 = \sum^n_{k=1} (2*k-1)
+    $$
+    Ein Ansatz dabei das $k$ durch die Länge den ersten Teil aller Zerlegungen zu ersetzen.
+    \begin{align*}
+      (s, w) = \sum_{w=uv} (2|u|-1,\;u)\cdot(\mathbbm{1},\;v)
+    \end{align*}
 \end{enumerate}
 
 \subsection{H 12-3}
