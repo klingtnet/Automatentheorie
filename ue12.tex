@@ -29,13 +29,16 @@
 \cfoot[\pagemark]{\textnormal{\pagemark{} / \pageref{LastPage}}}
 \setheadsepline{1pt}
 
+\newcommand{\llangle}{\langle\hspace{-0.2em}\langle}
+\newcommand{\rrangle}{\rangle\hspace{-0.2em}\rangle}
+
 \begin{document}
 
 \section{Übung 12}
 
 \subsection{H 12-1}
 
-\textsl{Zeigen Sie die folgende Aussage: Sei $S$ ein kommutative Semiring und $s, t \in S^{\text{rec}}\langle\langle A^* \rangle\rangle$. Dann ist $s \varodot t$ wieder erkennbar.}
+\textsl{Zeigen Sie die folgende Aussage: Sei $S$ ein kommutative Semiring und $s, t \in S^{\text{rec}}\llangle A^* \rrangle$. Dann ist $s \varodot t$ wieder erkennbar.}
 
 \subsection{H 12-2}
 
@@ -85,11 +88,11 @@ In der nachfolgenden Aufgabe werden folgende Abkürzungen verwendet:
 \textsl{Sei $S = (\mathbb{Z}, +, \cdot, 0, 1)$ und $A = \{a\}$. Beweisen Sie die folgenden Aussagen:}
 
 \begin{enumerate}[(a)]
-    \item \textsl{Die Reihe $s \in S\langle\langle A^* \rangle\rangle$, welche durch $(s, a^n) = \{a^nba^n\}$ definiert ist, ist nicht erkennbar.}
+    \item \textsl{Die Reihe $s \in S\llangle A^* \rrangle$, welche durch $(s, a^n) = \{a^nba^n\}$ definiert ist, ist nicht erkennbar.}
 
     \item \textsl{Die erkennbaren Reihen über $S$ sind nicht unter dem Hadamard-Produkt $\varodot$ abgeschlossen.}
 
-      Sei $(s, a^n) = \{a^n\}$ und $(t, a^n) = \{ba^n\}$. Es gilt $s, t \in S^{\text{rec}}\langle\langle A^* \rangle\rangle$.
+      Sei $(s, a^n) = \{a^n\}$ und $(t, a^n) = \{ba^n\}$. Es gilt $s, t \in S^{\text{rec}}\llangle A^* \rrangle$.
 
       Allerdings ist $(s\,\varodot\,t, w) = (s, w) \cdot (t, w) = \{a^nba^n\}$ und damit nach (a) nicht erkennbar.
 \end{enumerate}
