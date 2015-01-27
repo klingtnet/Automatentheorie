@@ -91,6 +91,13 @@ In der nachfolgenden Aufgabe werden folgende Abkürzungen verwendet:
 \begin{enumerate}[(a)]
     \item \textsl{Die Reihe $s \in S\llangle A^* \rrangle$, welche durch $(s, a^n) = \{a^nba^n\}$ definiert ist, ist nicht erkennbar.}
 
+      \begin{equation*}
+        \underbrace{q_0 \leadsto^a q_1 \leadsto^a \ldots \leadsto^a q_n}_{p\;=\;a^n} \leadsto^b \underbrace{q_{n+1} \leadsto^{a} q_{n+2} \leadsto^a q_{n+3} \leadsto^a \ldots \leadsto^a q_{2n+1}}_{p'\;=\;a^n}
+      \end{equation*}
+
+      Nachdem $p$ gelesen wurde, kann nicht mehr $\{ba^n\}$ gelesen werden. Allerdings könnte man $\{a^nb\}$ lesen indem man die $out$-Transition mit $b$ bewertet.
+
+      Es gibt also keinen Pfad der $\{a^nba^n\}$ liest, also ist die Reihe $s$ nicht erkennbar.
     \item \textsl{Die erkennbaren Reihen über $S$ sind nicht unter dem Hadamard-Produkt $\varodot$ abgeschlossen.}
 
       Sei $(s, a^n) = \{a^n\}$ und $(t, a^n) = \{ba^n\}$. Es gilt $s, t \in S^{\text{rec}}\llangle A^* \rrangle$.
