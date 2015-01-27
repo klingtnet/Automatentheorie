@@ -73,14 +73,15 @@ In der nachfolgenden Aufgabe werden folgende Abkürzungen verwendet:
 
     \item $S = (\mathbb{N}, +, \cdot, 0, 1)$ mit $(s, w) = |w|^2$
 
-    $n^2$ kann als die Summe der ersten $n$ ungeraden Zahlen dargestellt werden:
-    $$
-    n^2 = \sum^n_{k=1} (2*k-1)
-    $$
-    Ein Ansatz wäre den Laufindex $k$ durch die Länge des ersten Teils aller Zerlegungen zu ersetzen.
-    \begin{align*}
-      (s, w) = \sum_{w=uv} (2|u|-1,\;u)\cdot(\mathbbm{1},\;v)
-    \end{align*}
+      $n^2$ kann als die Summe der ersten $n$ ungeraden Zahlen dargestellt werden:
+
+      $$n^2 = \sum^n_{k=1} (2k-1)$$
+      
+      Ein Ansatz wäre den Laufindex $k$ durch die Länge des ersten Teils aller Zerlegungen zu ersetzen.
+      \begin{align*}
+        (s, w) &= \sum_{w=uv} (2|u|-1,\;u)\cdot(\mathbbm{1},\;v)\\
+      \end{align*}
+    Das heißt $(s, w) = \big((2|w|-1) \cdot \mathbbm{1}, w\big)$.
 \end{enumerate}
 
 \subsection{H 12-3}
